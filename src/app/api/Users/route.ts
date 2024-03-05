@@ -1,9 +1,9 @@
-import { db as PrismaDB } from "@/db/prisma";
+import { findUserList } from "@/db/users";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const users = await PrismaDB.user.findMany();
+    const users = await findUserList();
 
     return NextResponse.json({ users }, { status: 200 });
   } catch (err) {

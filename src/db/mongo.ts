@@ -1,17 +1,31 @@
-import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
 
-const client = new MongoClient(process.env.BASE_MONGODB_URL as string);
-
-const connectDb = () => {
-  return client.connect();
-};
-
-const disconnectDb = () => {
-  return client.close();
-};
-
-const getDB = () => {
-  return client.db("xpandiodb");
-};
-
-export { connectDb, disconnectDb, getDB };
+const MONGO_URI = process.env.BASE_MONGODB_URL;
+const cached: {
+  connection?: typeof mongoose;
+  promise?: Promise<typeof mongoose>;
+} = {};
+async function connectMongo() {
+  if (!MONGO_URI) {
+    throw new Error(
+      "Please define the MONGO_URI environment variable inside .env.local"
+    );
+  }
+  if (cached.connection) {
+    return cached.connection;
+  }
+  if (!cached.promise) {
+    const opts = {
+      bufferCommands: false,
+    };
+    cached.promise = mongoose.connect(MONGO_URI, opts);
+  }
+  try {
+    cached.connection = await cached.promise;
+  } catch (e) {
+    cached.promise = undefined;
+    throw e;
+  }
+  return cached.connection;
+}
+export default connectMongo;

@@ -1,7 +1,7 @@
 import Profile from "../models/Profile";
 import User from "../models/User";
 import connectMongo from "../mongo";
-import { TProfile } from "../types/IProfile";
+import { IProfile, TProfile } from "../types/IProfile";
 
 const findUserList = async () => {
   let retVal = { error: false, errorMessage: "", data: {} };
@@ -35,7 +35,10 @@ const findProfileList = async () => {
     };
     const profile = new Profile(profileFields);
     await profile.save();
-    const allProfiles = await Profile.find({});
+    const allProfiles: IProfile[] = await Profile.find().populate("user", [
+      "avatar",
+      "email",
+    ]);
     retVal.data = { ...allProfiles };
   } catch (err) {
     console.log(err);

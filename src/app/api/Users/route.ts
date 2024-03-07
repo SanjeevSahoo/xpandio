@@ -1,11 +1,11 @@
-import { findProductList } from "@/db/products";
+import { findUserList } from "@/db/users";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const products = await findProductList();
+    const users = await findUserList();
 
-    return NextResponse.json({ products }, { status: 200 });
+    return NextResponse.json({ users }, { status: 200 });
   } catch (err) {
     console.log(err);
     return NextResponse.json({ message: "Error", err }, { status: 500 });

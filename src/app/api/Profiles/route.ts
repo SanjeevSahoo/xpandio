@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import { findProfileList } from "@/_common/db/mongodb/services/users";
+import { BASE_DB_TYPE } from "@/_common/constants";
 
 export async function GET() {
   try {
-    const allProfiles = await findProfileList();
+    const allProfiles =
+      BASE_DB_TYPE === "mongodb" ? await findProfileList() : [];
 
     return NextResponse.json({ allProfiles }, { status: 200 });
   } catch (err) {

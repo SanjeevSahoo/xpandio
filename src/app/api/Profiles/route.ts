@@ -1,5 +1,5 @@
-import { findProfileList } from "@/db/users";
 import { NextResponse } from "next/server";
+import { findProfileList } from "@/_common/db/mongodb/services/users";
 
 export async function GET() {
   try {

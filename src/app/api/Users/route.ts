@@ -1,5 +1,5 @@
-import { findUserList } from "@/db/users";
 import { NextResponse } from "next/server";
+import { findUserList } from "@/_common/db/mongodb/services/users";
 
 export async function GET() {
   try {

@@ -1,7 +1,7 @@
-import Profile from "../models/Profile";
-import User from "../models/User";
-import connectMongo from "../mongo";
-import { IProfile, TProfile } from "../types/IProfile";
+import { IProfile, TProfile } from "@/_common/types/IProfile";
+import Profile from "@/_common/db/mongodb/models/Profile";
+import User from "@/_common/db/mongodb/models/User";
+import connectMongo from "@/_common/db/mongodb/connection";
 
 const findUserList = async () => {
   let retVal = { error: false, errorMessage: "", data: {} };

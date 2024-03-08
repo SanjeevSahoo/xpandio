@@ -1,5 +1,5 @@
 import { models, model, Schema } from "mongoose";
-import { IProfile } from "../types/IProfile";
+import { IProfile } from "@/_common/types/IProfile";
 
 const profileSchema: Schema = new Schema({
   user: {

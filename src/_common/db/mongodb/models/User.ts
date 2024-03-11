@@ -5,6 +5,7 @@ const userSchema: Schema = new Schema({
   emp_id: {
     type: String,
     required: true,
+    unique: true,
   },
   name: {
     type: String,
@@ -53,12 +54,14 @@ const userSchema: Schema = new Schema({
   },
   rfid: {
     type: String,
+    unique: true,
   },
   separation_date: {
     type: String,
   },
   unique_no: {
     type: String,
+    unique: true,
   },
   updatedBy: {
     type: String,

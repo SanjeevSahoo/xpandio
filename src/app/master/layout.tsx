@@ -16,14 +16,11 @@ export default async function RootLayout({
           <p className="text-blue-800">{session?.user?.email}</p>
         </div>
         <div className="w-[100px] flex justify-end items-center p-2">
-          <Button
-            type="button"
-            onClick={logout}
-            className="w-40"
-            variant="secondary"
-          >
-            logout
-          </Button>
+          <form action={logout}>
+            <Button type="submit" className="w-40" variant="secondary">
+              logout
+            </Button>
+          </form>
         </div>
       </div>
       <div className="h-full w-full overflow-auto">{children}</div>

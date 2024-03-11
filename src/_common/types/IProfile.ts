@@ -1,7 +1,5 @@
-import { IUser } from "./IUser";
-
 export type TProfile = {
-  user: IUser["_id"];
+  userId: string;
   firstName: string;
   lastName: string;
   username: string;

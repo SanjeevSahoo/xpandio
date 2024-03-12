@@ -3,6 +3,7 @@ import type { NextAuthConfig } from "next-auth";
 export const authConfig = {
   session: {
     strategy: "jwt",
+    maxAge: 60 * 30,
   },
   pages: {
     error: "/",
@@ -12,7 +13,6 @@ export const authConfig = {
   callbacks: {
     authorized({ auth }) {
       const isAuthenticated = !!auth?.user;
-
       return isAuthenticated;
     },
   },

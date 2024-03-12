@@ -7,7 +7,7 @@ async function getUser(email: string, password: string): Promise<any> {
     id: 1,
     name: "test user",
     email: email,
-    password: password,
+    address: "some address",
   };
 }
 

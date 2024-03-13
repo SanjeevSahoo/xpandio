@@ -15,6 +15,16 @@ export const authConfig = {
       const isAuthenticated = !!auth?.user;
       return isAuthenticated;
     },
+    async jwt({ token, account, profile }) {
+      if (account && account.type === "credentials") {
+        token.userId = account.providerAccountId;
+      }
+      return token;
+    },
+    async session({ session, token, user }) {
+      session.user.id = token.userId;
+      return session;
+    },
   },
   providers: [],
 } satisfies NextAuthConfig;

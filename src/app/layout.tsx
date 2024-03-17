@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/_common/components/theme-provider";
+import { NextThemesProvider } from "@/_common/components/NextThemesProvider";
 
 import "./globals.css";
 import { THEME_LIST } from "@/_common/constants";
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <ThemeProvider
+        <NextThemesProvider
           attribute="class"
           defaultTheme="light"
           enableSystem={false}
@@ -25,7 +25,7 @@ export default function RootLayout({
           themes={[...THEME_LIST]}
         >
           {children}
-        </ThemeProvider>
+        </NextThemesProvider>
       </body>
     </html>
   );

@@ -1,6 +1,4 @@
-import { Document } from "mongoose";
-
-export type TUser = {
+type TUser = {
   _id?: string;
   base_loc: string;
   createdBy: string;
@@ -24,6 +22,4 @@ export type TUser = {
   allowed_domain_login: string;
 };
 
-export interface IUser extends TUser, Document {
-  _id: string;
-}
+export default TUser;

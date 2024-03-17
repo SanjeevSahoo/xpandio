@@ -1,3 +1,3 @@
-type TDBType = "mongodb" | "oracledb";
+type TDBType = "mongodb" | "oracledb" | "mysqldb";
 
 export default TDBType;

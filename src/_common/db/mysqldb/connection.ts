@@ -1,34 +1,27 @@
-import mysql2 from "oracledb";
+import mysql2 from "mysql2/promise";
 
 const DB_CONFIG = {
-  user: process.env.BASE_ORACLEDB_USER,
-  password: process.env.BASE_ORACLEDB_PASSWORD,
-  connectString: process.env.BASE_ORACLEDB_URL,
+  host: process.env.BASE_MYSQLDB_HOST,
+  user: process.env.BASE_MYSQLDB_USER,
+  password: process.env.BASE_MYSQLDB_PASSWORD,
+  database: process.env.BASE_MYSQLDB_DATABASE,
+  namedPlaceholders: true,
 };
 
-function simpleQuery(
-  statement: string,
-  binds: BindParameters = [],
-  opts: ExecuteOptions = {}
-) {
+function simpleQuery(statement: string, binds: any[] = []) {
   return new Promise(async (resolve, reject) => {
-    oracledb.initOracleClient();
     let conn;
 
-    opts.outFormat = oracledb.OUT_FORMAT_OBJECT;
-    opts.autoCommit = true;
-
     try {
-      conn = await oracledb.getConnection(DB_CONFIG);
-      const result = await conn.execute(statement, binds, opts);
+      conn = await mysql2.createConnection(DB_CONFIG);
+      const result = await conn.execute(statement, binds);
       resolve(result);
     } catch (err) {
       reject(err);
     } finally {
       if (conn) {
-        // conn assignment worked, need to close
         try {
-          await conn.close();
+          await conn.end();
         } catch (err) {
           console.log(err);
         }

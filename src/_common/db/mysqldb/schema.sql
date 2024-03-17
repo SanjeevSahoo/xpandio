@@ -17,7 +17,7 @@ create table t_frm_users
     password varchar(255),
     rfid varchar(255),
     sap_status varchar(50) not null,
-    separation_datetime varchar(50),
+    separation_date varchar(50),
     unique_no varchar(50),
     upd_by int,
     upd_ts datetime,

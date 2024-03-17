@@ -15,7 +15,7 @@ export const authConfig = {
       const isAuthenticated = !!auth?.user;
       return isAuthenticated;
     },
-    async jwt({ token, account, profile }) {
+    async jwt({ token, account, user }) {
       if (account && account.type === "credentials") {
         token.userId = account.providerAccountId;
       }

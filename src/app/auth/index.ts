@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import { authConfig } from "./auth.config";
 import Credentials from "next-auth/providers/credentials";
-import { getAuthUser } from "./auth.services";
+import { authenticateUser } from "./auth.services";
 
 export const {
   auth,
@@ -18,12 +18,18 @@ export const {
         password: { label: "password", type: "password" },
       },
       async authorize(credentials) {
-        const user = await getAuthUser(
+        const user = await authenticateUser(
           credentials.username as string,
           credentials.password as string
         );
 
-        return user ?? null;
+        if (user && !user.error) {
+          return user.data;
+        } else {
+          console.log("Invalid Credentials");
+
+          return new Error("Invalid Credentials");
+        }
       },
     }),
   ],

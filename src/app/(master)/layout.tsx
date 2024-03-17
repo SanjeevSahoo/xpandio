@@ -1,7 +1,7 @@
 import ThemeToggler from "@/_common/components/ThemeToggler";
 import { Button } from "@/_common/components/ui/button";
-import { logout } from "@/_common/utils/actions";
-import { auth } from "@/auth";
+import { logout } from "@/app/auth/actions";
+import { auth } from "@/app/auth";
 
 export default async function RootLayout({
   children,

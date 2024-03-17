@@ -1,16 +1,16 @@
 "use server";
 
 import { AuthError } from "next-auth";
-import { signIn, signOut } from "@/auth";
+import { signIn, signOut } from "@/app/auth";
 
 const defaultValues = {
-  email: "",
+  username: "",
   password: "",
 };
 
 export async function login(prevState: any, formData: FormData) {
   try {
-    const email = formData.get("email");
+    const username = formData.get("username");
     const password = formData.get("password");
 
     await signIn("credentials", formData);
@@ -27,7 +27,7 @@ export async function login(prevState: any, formData: FormData) {
             message: "credentials error",
             errors: {
               ...defaultValues,
-              credentials: "incorrect email or password",
+              credentials: "incorrect username or password",
             },
           };
         default:

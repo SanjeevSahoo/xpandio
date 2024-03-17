@@ -1,6 +1,6 @@
 "use client";
 
-import { login } from "@/_common/utils/actions";
+import { login } from "@/app/auth/actions";
 import { useFormState } from "react-dom";
 import { Input } from "@/_common/components/ui/input";
 import { Button } from "@/_common/components/ui/button";
@@ -8,7 +8,7 @@ import { Button } from "@/_common/components/ui/button";
 const loginInitialState = {
   message: "",
   errors: {
-    email: "",
+    username: "",
     password: "",
     credentials: "",
     unknown: "",
@@ -20,7 +20,7 @@ const Form = () => {
 
   return (
     <form action={formAction} className="space-y-4 w-full max-w-sm">
-      <Input required name="email" placeholder="email" />
+      <Input required name="username" placeholder="username" />
       <Input required name="password" type="password" placeholder="password" />
       <Button variant="secondary" className="w-full" type="submit">
         submit

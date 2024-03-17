@@ -1,4 +1,4 @@
-import Form from "@/_common/components/form";
+import Form from "@/app/auth/form";
 
 const Root = () => {
   return (

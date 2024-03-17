@@ -1,15 +1,7 @@
 import NextAuth from "next-auth";
 import { authConfig } from "./auth.config";
 import Credentials from "next-auth/providers/credentials";
-
-async function getUser(email: string, password: string): Promise<any> {
-  return {
-    id: 1,
-    name: "test user",
-    email: email,
-    address: "some address",
-  };
-}
+import { getAuthUser } from "./auth.services";
 
 export const {
   auth,
@@ -26,7 +18,7 @@ export const {
         password: { label: "password", type: "password" },
       },
       async authorize(credentials) {
-        const user = await getUser(
+        const user = await getAuthUser(
           credentials.username as string,
           credentials.password as string
         );

@@ -1,7 +1,13 @@
-import React from "react";
+import BaseLogin from "@/app/auth/BaseLogin";
+import Form from "@/app/auth/form";
 
-function SignIn() {
-  return <div>Health SignIn</div>;
-}
+const Root = () => {
+  return (
+    <main className=" items-center justify-center h-screen w-screen grid grid-rows-[auto_1fr]">
+      <Form />
+      <BaseLogin newAppBase="/health" />
+    </main>
+  );
+};
 
-export default SignIn;
+export default Root;

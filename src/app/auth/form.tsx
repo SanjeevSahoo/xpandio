@@ -25,6 +25,7 @@ const Form = () => {
       <Button variant="secondary" className="w-full" type="submit">
         submit
       </Button>
+      {formState.message && <p className="text-red-500">Invalid Credentials</p>}
     </form>
   );
 };

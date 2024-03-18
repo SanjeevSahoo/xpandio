@@ -28,7 +28,7 @@ export const {
         } else {
           console.log("Invalid Credentials");
 
-          return new Error("Invalid Credentials");
+          return null;
         }
       },
     }),

@@ -103,7 +103,6 @@ const authenticateUser = async (
         };
       });
 
-      console.log(resultUsers);
       if (!resultUsers || resultUsers.errorMessage) {
         retVal.error = true;
         retVal.errorMessage = resultUsers.errorMessage;

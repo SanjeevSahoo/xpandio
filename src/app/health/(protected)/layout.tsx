@@ -2,9 +2,9 @@ import ThemeToggler from "@/_common/components/ThemeToggler";
 import { Button } from "@/_common/components/ui/button";
 import { logout } from "@/app/auth/actions";
 import { auth } from "@/app/auth";
-import CurrBase from "../auth/CurrBase";
+import CurrBase from "../../auth/CurrBase";
 import { Input } from "@/_common/components/ui/input";
-import LogoutButton from "../auth/LogoutButton";
+import LogoutButton from "../../auth/LogoutButton";
 
 export default async function RootLayout({
   children,

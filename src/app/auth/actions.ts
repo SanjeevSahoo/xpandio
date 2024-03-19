@@ -47,6 +47,10 @@ export async function login(prevState: any, formData: FormData) {
   }
 }
 
-export async function logout() {
-  await signOut();
+export async function logout(formData: FormData) {
+  const pathname = formData.get("pathname");
+  let signInBase = pathname ? pathname.toString() : "/";
+
+  signInBase = signInBase === "/" ? "/" : `${signInBase}/signin`;
+  await signOut({ redirectTo: signInBase });
 }

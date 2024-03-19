@@ -12,8 +12,11 @@ export async function login(prevState: any, formData: FormData) {
   try {
     const username = formData.get("username");
     const password = formData.get("password");
+    const pathname = formData.get("pathname");
+    let appBase = pathname ? pathname.toString() : "/dashboard";
+    appBase = appBase.replace("/signin", "");
 
-    await signIn("credentials", formData);
+    await signIn("credentials", { username, password, redirectTo: appBase });
 
     return {
       message: "success",

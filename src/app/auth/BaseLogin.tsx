@@ -11,9 +11,7 @@ const BaseLogin = (props: IProps) => {
   const appBase = appStore((state) => state.appBase);
   const setAppBase = appStore((state) => state.setAppBase);
   useEffect(() => {
-    if (appBase !== newAppBase) {
-      setAppBase(newAppBase);
-    }
+    setAppBase(newAppBase);
   }, []);
   return <div>Base Login : {appBase}</div>;
 };

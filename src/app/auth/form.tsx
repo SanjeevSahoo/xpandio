@@ -5,6 +5,7 @@ import { useFormState } from "react-dom";
 import { Input } from "@/_common/components/ui/input";
 import { Button } from "@/_common/components/ui/button";
 import { usePathname } from "next/navigation";
+import { encryptData } from "@/_common/utils/crypto";
 
 const loginInitialState = {
   message: "",
@@ -20,8 +21,13 @@ const Form = () => {
   const [formState, formAction] = useFormState(login, loginInitialState);
   const pathname = usePathname();
 
+  const handleFormAction = (formData: FormData) => {
+    formData.set("password", encryptData(formData.get("password")));
+    formAction(formData);
+  };
+
   return (
-    <form action={formAction} className="space-y-4 w-full max-w-sm">
+    <form action={handleFormAction} className="space-y-4 w-full max-w-sm">
       <Input
         required
         name="pathname"

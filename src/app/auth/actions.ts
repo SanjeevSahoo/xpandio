@@ -2,6 +2,7 @@
 
 import { AuthError } from "next-auth";
 import { signIn, signOut } from "@/app/auth";
+import { decryptData, encryptData } from "@/_common/utils/crypto";
 
 const defaultValues = {
   username: "",
@@ -10,13 +11,20 @@ const defaultValues = {
 
 export async function login(prevState: any, formData: FormData) {
   try {
-    const username = formData.get("username");
-    const password = formData.get("password");
-    const pathname = formData.get("pathname");
-    let appBase = pathname ? pathname.toString() : "/dashboard";
+    const username = formData.get("username")?.toString();
+    const password = formData.get("password")?.toString();
+    const pathname = formData.get("pathname")?.toString();
+    const decDomainId = decryptData(username || "");
+    const decPassword = decryptData(password || "");
+    console.log(password, decPassword);
+    let appBase = pathname || "/dashboard";
     appBase = appBase.replace("/signin", "");
 
-    await signIn("credentials", { username, password, redirectTo: appBase });
+    await signIn("credentials", {
+      username: decDomainId,
+      password: decPassword,
+      redirectTo: appBase,
+    });
 
     return {
       message: "success",

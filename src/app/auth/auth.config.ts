@@ -18,12 +18,16 @@ export const authConfig = {
     },
     async jwt({ token, account, user }) {
       if (account && account.type === "credentials") {
-        token.userId = account.providerAccountId;
+        token._id = user._id || "";
+        token.email = user.email || "";
+        token.emp_id = user.emp_id || "";
       }
       return token;
     },
     async session({ session, token }) {
-      session.user.id = token.userId;
+      session.user._id = token._id || "";
+      session.user.email = token.email || "";
+      session.user.emp_id = token.emp_id || "";
       return session;
     },
   },

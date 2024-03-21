@@ -16,7 +16,7 @@ export async function login(prevState: any, formData: FormData) {
     const pathname = formData.get("pathname")?.toString();
     const decDomainId = decryptData(username || "");
     const decPassword = decryptData(password || "");
-    console.log(password, decPassword);
+
     let appBase = pathname || "/dashboard";
     appBase = appBase.replace("/signin", "");
 

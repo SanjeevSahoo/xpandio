@@ -22,6 +22,7 @@ const Form = () => {
   const pathname = usePathname();
 
   const handleFormAction = (formData: FormData) => {
+    formData.set("username", encryptData(formData.get("username")));
     formData.set("password", encryptData(formData.get("password")));
     formAction(formData);
   };

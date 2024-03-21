@@ -76,7 +76,7 @@ const authenticateUser = async (
           id "_id",          
           email "email",
           emp_id "emp_id",          
-          name "name",,
+          name "name",
           password "password"
         FROM
             t_frm_users t1
@@ -122,6 +122,14 @@ const authenticateUser = async (
             retVal.error = true;
             retVal.errorMessage = "Invalid Credentials";
           }
+        } else {
+          retVal.error = false;
+          retVal.data = {
+            _id: currUsers[0]._id,
+            name: currUsers[0].name,
+            email: currUsers[0].email,
+            emp_id: currUsers[0].emp_id,
+          };
         }
       } else {
         retVal.error = true;

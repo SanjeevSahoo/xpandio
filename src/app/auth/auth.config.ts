@@ -4,7 +4,7 @@ export const authConfig = {
   trustHost: true,
   session: {
     strategy: "jwt",
-    maxAge: 60 * 30,
+    maxAge: 60 * 1,
   },
   pages: {
     error: "/",

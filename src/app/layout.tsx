@@ -3,6 +3,7 @@ import { NextThemesProvider } from "@/_common/components/NextThemesProvider";
 
 import "./globals.css";
 import { THEME_LIST } from "@/_common/constants";
+import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
   title: "Xpandio App",
@@ -17,15 +18,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <NextThemesProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          disableTransitionOnChange
-          themes={[...THEME_LIST]}
-        >
-          {children}
-        </NextThemesProvider>
+        <SessionProvider>
+          <NextThemesProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem={false}
+            disableTransitionOnChange
+            themes={[...THEME_LIST]}
+          >
+            {children}
+          </NextThemesProvider>
+        </SessionProvider>
       </body>
     </html>
   );

@@ -4,7 +4,7 @@ export const authConfig = {
   trustHost: true,
   session: {
     strategy: "jwt",
-    maxAge: 60 * 1,
+    maxAge: 60 * 30,
   },
   pages: {
     error: "/",
@@ -22,6 +22,7 @@ export const authConfig = {
         token.email = user.email || "";
         token.emp_id = user.emp_id || "";
       }
+
       return token;
     },
     async session({ session, token }) {

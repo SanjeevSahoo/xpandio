@@ -1,9 +1,6 @@
 import ThemeToggler from "@/_common/components/ThemeToggler";
-import { Button } from "@/_common/components/ui/button";
-import { logout } from "@/app/auth/actions";
 import { auth } from "@/app/auth";
-import CurrBase from "../auth/CurrBase";
-import { Input } from "@/_common/components/ui/input";
+import LogoutTimer from "../auth/LogoutTimer";
 import LogoutButton from "../auth/LogoutButton";
 
 export default async function RootLayout({
@@ -22,7 +19,7 @@ export default async function RootLayout({
         </div>
         <div className="flex justify-end items-center p-2">
           <ThemeToggler />
-          <CurrBase />
+          <LogoutTimer />
         </div>
         <div className="flex justify-end items-center p-2">
           <LogoutButton />

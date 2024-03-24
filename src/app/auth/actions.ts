@@ -19,7 +19,7 @@ export async function login(prevState: any, formData: FormData) {
 
     let appBase = pathname || "/dashboard";
     appBase = appBase.replace("/signin", "");
-
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     await signIn("credentials", {
       username: decDomainId,
       password: decPassword,

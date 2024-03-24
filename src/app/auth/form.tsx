@@ -1,7 +1,7 @@
 "use client";
 
 import { login } from "@/app/auth/actions";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import { Input } from "@/_common/components/ui/input";
 import { Button } from "@/_common/components/ui/button";
 import { usePathname } from "next/navigation";
@@ -17,6 +17,23 @@ const loginInitialState = {
   },
 };
 
+const SubmitButton = () => {
+  const formStatus = useFormStatus();
+  return (
+    <>
+      <Button
+        variant="secondary"
+        className="w-full"
+        type="submit"
+        disabled={formStatus.pending}
+      >
+        submit
+      </Button>
+      {formStatus.pending && <p className="text-red-500">Loading....</p>}
+    </>
+  );
+};
+
 const Form = () => {
   const [formState, formAction] = useFormState(login, loginInitialState);
   const pathname = usePathname();
@@ -29,6 +46,7 @@ const Form = () => {
 
   return (
     <form action={handleFormAction} className="space-y-4 w-full max-w-sm">
+      {JSON.stringify(formState)}
       <Input
         required
         name="pathname"
@@ -38,9 +56,7 @@ const Form = () => {
       />
       <Input required name="username" placeholder="username" />
       <Input required name="password" type="password" placeholder="password" />
-      <Button variant="secondary" className="w-full" type="submit">
-        submit
-      </Button>
+      <SubmitButton />
       {formState.message && <p className="text-red-500">Invalid Credentials</p>}
     </form>
   );

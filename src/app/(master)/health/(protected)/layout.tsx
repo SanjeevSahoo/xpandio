@@ -13,6 +13,10 @@ export default function RootLayout({
 }>) {
   const { data: session } = useSession();
   const appMode = appStore((state) => state.appMode);
+  if (appMode === "NA") {
+    return <p>Loading...</p>;
+  }
+
   if (appMode === "Default") {
     return <div className="h-full w-full overflow-auto">{children}</div>;
   }

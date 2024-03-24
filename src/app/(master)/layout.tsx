@@ -5,6 +5,7 @@ import { appStore } from "@/_common/store/appStore";
 import LogoutButton from "@/app/auth/LogoutButton";
 import LogoutTimer from "@/app/auth/LogoutTimer";
 import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 
 export default function RootLayout({
   children,
@@ -12,8 +13,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const { data: session } = useSession();
+
+  const pathname = usePathname();
+
   const appMode = appStore((state) => state.appMode);
-  if (appMode === "Detached") {
+  if (appMode === "NA") {
+    return <p>Loading...</p>;
+  }
+
+  if (appMode === "Detached" || pathname.includes("/signin")) {
     return <div className="h-full w-full overflow-auto">{children}</div>;
   }
 

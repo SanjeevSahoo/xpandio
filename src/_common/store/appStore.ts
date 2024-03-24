@@ -12,7 +12,7 @@ export const appStore = create<TAppState>()(
   persist(
     (set) => ({
       appBase: "/",
-      appMode: "Default",
+      appMode: "NA",
       setAppBase: (newAppBase) => set(() => ({ appBase: newAppBase })),
       setAppMode: (newAppMode) => set(() => ({ appMode: newAppMode })),
     }),

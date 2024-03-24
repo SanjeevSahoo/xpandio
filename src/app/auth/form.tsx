@@ -46,7 +46,6 @@ const Form = () => {
 
   return (
     <form action={handleFormAction} className="space-y-4 w-full max-w-sm">
-      {JSON.stringify(formState)}
       <Input
         required
         name="pathname"

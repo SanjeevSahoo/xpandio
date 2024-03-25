@@ -23,6 +23,8 @@ const THEME_LIST = [
   "dark-orange",
 ];
 
+const PUBLIC_COPYRIGHT_ORG = process.env.PUBLIC_COPYRIGHT_ORG || "";
+
 export {
   BASE_DB_TYPE,
   ROOT,
@@ -32,4 +34,5 @@ export {
   PUBLIC_CRYPTO_KEY,
   LDAP_HOSTS,
   LDAP_HOSTS_TML,
+  PUBLIC_COPYRIGHT_ORG,
 };

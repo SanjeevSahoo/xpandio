@@ -45,7 +45,7 @@ const Form = () => {
   };
 
   return (
-    <form action={handleFormAction} className="space-y-4 w-full max-w-sm">
+    <form action={handleFormAction} className="space-y-4 w-full ">
       <Input
         required
         name="pathname"

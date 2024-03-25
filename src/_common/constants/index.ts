@@ -15,7 +15,13 @@ const ROOT = "/";
 const PUBLIC_ROUTES = ["/", "/health/signin"];
 const DEFAULT_REDIRECT = "/dashboard";
 
-const THEME_LIST = ["dark", "light", "orange"];
+const THEME_LIST = [
+  "light",
+  "dark",
+  "light-blue",
+  "light-orange",
+  "dark-orange",
+];
 
 export {
   BASE_DB_TYPE,

@@ -3,6 +3,7 @@ import Logo from "./(master)/layout/Logo";
 import Copyright from "./(master)/layout/Copyright";
 import LoginForm from "@/app/auth/LoginForm";
 import ThemeToggler from "@/_common/components/ThemeToggler";
+import LoginSideInfo from "./auth/LoginSideInfo";
 
 const Root = () => {
   return (
@@ -28,8 +29,9 @@ const Root = () => {
           </div>
         </div>
         <div className="relative w-full h-full flex justify-center items-center p-4 bg-card text-card-foreground">
-          <BaseLogin newAppBase="/" />
+          <LoginSideInfo />
           <div className="absolute top-1 right-1">
+            <BaseLogin newAppBase="/" />
             <ThemeToggler />
           </div>
         </div>

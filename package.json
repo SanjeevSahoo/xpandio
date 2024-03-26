@@ -16,6 +16,8 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "crypto-js": "^4.2.0",
+    "embla-carousel-autoplay": "^8.0.0",
+    "embla-carousel-react": "^8.0.0",
     "ldapjs": "^3.0.7",
     "lucide-react": "^0.352.0",
     "mysql2": "^3.9.2",

@@ -53,7 +53,7 @@ const BaseLogin = (props: IProps) => {
     }
   }, [searchParams, appMode, pathname]);
   return (
-    <div>
+    <div className="hidden">
       Base Login : {appBase}, {appMode}
     </div>
   );

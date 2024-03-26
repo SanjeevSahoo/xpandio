@@ -22,19 +22,19 @@ const SubmitButton = () => {
   return (
     <>
       <Button
-        variant="secondary"
+        variant="primary"
         className="w-full"
         type="submit"
         disabled={formStatus.pending}
       >
-        submit
+        Sign In
       </Button>
       {formStatus.pending && <p className="text-red-500">Loading....</p>}
     </>
   );
 };
 
-const Form = () => {
+const LoginForm = () => {
   const [formState, formAction] = useFormState(login, loginInitialState);
   const pathname = usePathname();
 
@@ -53,12 +53,19 @@ const Form = () => {
         defaultValue={pathname}
         className="hidden"
       />
-      <Input required name="username" placeholder="username" />
-      <Input required name="password" type="password" placeholder="password" />
-      <SubmitButton />
+      <Input required name="username" placeholder="Your Username" />
+      <Input
+        required
+        name="password"
+        type="password"
+        placeholder="Your Password"
+      />
+      <div className="py-2">
+        <SubmitButton />
+      </div>
       {formState.message && <p className="text-red-500">Invalid Credentials</p>}
     </form>
   );
 };
 
-export default Form;
+export default LoginForm;

@@ -1,10 +1,10 @@
 import BaseLogin from "@/app/auth/BaseLogin";
-import Form from "@/app/auth/form";
+import LoginForm from "@/app/auth/LoginForm";
 
 const Root = () => {
   return (
     <main className=" items-center justify-center h-screen w-screen grid grid-rows-[auto_1fr]">
-      <Form />
+      <LoginForm />
       <BaseLogin newAppBase="/health" />
     </main>
   );

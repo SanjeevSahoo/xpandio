@@ -38,20 +38,9 @@ function ThemeToggler() {
       );
     }
 
-    if (currTheme === "light-blue") {
+    if (currTheme === "light-green") {
       return (
-        <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-blue-500" />
-      );
-    }
-    if (currTheme === "light-orange") {
-      return (
-        <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-amber-500" />
-      );
-    }
-
-    if (currTheme === "dark-orange") {
-      return (
-        <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:rotate-90 dark:scale-0  text-amber-300" />
+        <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-green-500" />
       );
     }
 

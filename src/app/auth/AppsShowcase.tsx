@@ -30,7 +30,7 @@ const APPS_SHOWCASE_LIST = [
 
 function AppsShowcase() {
   return (
-    <div className="w-full grid grid-rows-[auto_1fr_auto] ">
+    <div className="w-full h-full grid grid-rows-[auto_1fr_auto] p-2">
       <div className="text-muted-foreground text-lg p-2 flex justify-center items-center border-b-2">
         Available Apps
       </div>
@@ -46,7 +46,7 @@ function AppsShowcase() {
           <CarouselContent>
             {APPS_SHOWCASE_LIST.map((app) => (
               <CarouselItem key={app.id}>
-                <div className="flex justify-center  items-center h-full p-6">
+                <div className="flex justify-center  items-center h-full ">
                   {app.showcase}
                 </div>
               </CarouselItem>
@@ -54,28 +54,23 @@ function AppsShowcase() {
           </CarouselContent>
         </Carousel>
       </div>
-      <div className="w-full ">
+      <div className="w-full p-2">
         <Carousel
           opts={{
             align: "start",
           }}
-          className="w-full "
         >
-          <CarouselContent>
+          <CarouselContent className="grid grid-cols-4 ">
             {APPS_SHOWCASE_LIST.map((app) => (
-              <CarouselItem key={app.id} className="md:basis-1/2 lg:basis-1/4">
-                <div className="p-1">
-                  <Card>
-                    <CardContent className="flex w-[100px] h-[100px] items-center justify-center p-4 text-center">
-                      {app.name}
-                    </CardContent>
-                  </Card>
-                </div>
+              <CarouselItem key={app.id}>
+                <Card>
+                  <CardContent className="grid w-full h-[90px] items-center justify-center  text-center pt-4 p-4 text-sm">
+                    {app.name}
+                  </CardContent>
+                </Card>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
         </Carousel>
       </div>
     </div>

@@ -10,36 +10,29 @@ import {
 } from "@/_common/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import React from "react";
+import AppsShowcase from "./AppsShowcase";
 
 function LoginSideInfo() {
   return (
     <Carousel
-      className="w-[85%] "
+      className="w-[88%] "
       plugins={[
         Autoplay({
-          delay: 10000,
+          delay: 30000,
         }),
       ]}
     >
       <CarouselContent>
         <CarouselItem>
-          <div className="p-1">
-            <Card>
-              <CardContent className="flex justify-center  items-center h-full p-6">
-                <p className="text-muted-foreground text-lg ">Available Apps</p>
-              </CardContent>
-            </Card>
+          <div className="flex justify-center  items-center h-full p-2">
+            <AppsShowcase />
           </div>
         </CarouselItem>
         <CarouselItem>
-          <div className="p-1">
-            <Card>
-              <CardContent className="flex justify-center  items-center h-full p-6">
-                <p className="text-muted-foreground text-lg ">
-                  New / Upcoming Changes
-                </p>
-              </CardContent>
-            </Card>
+          <div className="flex justify-center  items-center h-full p-2">
+            <p className="text-muted-foreground text-lg ">
+              New / Upcoming Changes
+            </p>
           </div>
         </CarouselItem>
       </CarouselContent>

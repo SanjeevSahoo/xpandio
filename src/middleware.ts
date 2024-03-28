@@ -1,8 +1,16 @@
 import NextAuth from "next-auth";
-import { authConfig } from "@/app/auth/auth.config";
+
 import { DEFAULT_REDIRECT, PUBLIC_ROUTES, ROOT } from "@/_common/constants";
+import { authConfig } from "./app/[locale]/auth/auth.config";
+import { NextRequest } from "next/server";
+import { i18nRouter } from "next-i18n-router";
+import i18nConfig from "./app/localization/i18nConfig";
 
 const { auth } = NextAuth(authConfig);
+
+export function middleware(request: NextRequest) {
+  return i18nRouter(request, i18nConfig);
+}
 
 export default auth((req) => {
   const { nextUrl } = req;

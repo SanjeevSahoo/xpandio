@@ -1,28 +1,19 @@
 "use client";
 
-import React, { ReactNode } from "react";
-import SafetyShowcase from "./showcase/SafetyShowcase";
+import React from "react";
 import HealthShowcase from "./showcase/HealthShowcase";
-import { Card, CardContent } from "@/_common/components/ui/card";
+
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
 } from "@/_common/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
 const APPS_SHOWCASE_LIST = [
   {
     id: 1,
-    name: "Environment Health and Safety",
-    imgUrl: "",
-    showcase: <SafetyShowcase />,
-  },
-  {
-    id: 2,
-    name: "Health System",
+    name: "Occupational Health System",
     imgUrl: "",
     showcase: <HealthShowcase />,
   },
@@ -46,28 +37,9 @@ function AppsShowcase() {
           <CarouselContent>
             {APPS_SHOWCASE_LIST.map((app) => (
               <CarouselItem key={app.id}>
-                <div className="flex justify-center  items-center h-full ">
+                <div className="flex justify-center  items-center h-full w-full p-2 py-8 ">
                   {app.showcase}
                 </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-      </div>
-      <div className="w-full p-2">
-        <Carousel
-          opts={{
-            align: "start",
-          }}
-        >
-          <CarouselContent className="grid grid-cols-4 ">
-            {APPS_SHOWCASE_LIST.map((app) => (
-              <CarouselItem key={app.id}>
-                <Card>
-                  <CardContent className="grid w-full h-[90px] items-center justify-center  text-center pt-4 p-4 text-sm">
-                    {app.name}
-                  </CardContent>
-                </Card>
               </CarouselItem>
             ))}
           </CarouselContent>

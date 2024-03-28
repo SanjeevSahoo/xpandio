@@ -1,6 +1,5 @@
 "use client";
 
-import { Card, CardContent } from "@/_common/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -15,7 +14,11 @@ import AppsShowcase from "./AppsShowcase";
 function LoginSideInfo() {
   return (
     <Carousel
-      className="w-[88%] "
+      className="w-[75%] lg:w-[88%] "
+      opts={{
+        align: "start",
+        loop: true,
+      }}
       plugins={[
         Autoplay({
           delay: 30000,

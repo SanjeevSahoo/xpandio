@@ -1,4 +1,7 @@
 {
+  "headings": {
+    "welcome_back": "Welcome Back"
+  },
   "texts": {
     "loading_wait": "Loading...! Please Wait"
   },

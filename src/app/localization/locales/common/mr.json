@@ -1,4 +1,7 @@
 {
+  "headings": {
+    "welcome_back": "परत स्वागत आहे"
+  },
   "texts": {
     "loading_wait": "लोड करत आहे...! कृपया थांबा"
   },

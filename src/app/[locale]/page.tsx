@@ -1,11 +1,16 @@
+"use client";
+
 import BaseLogin from "./auth/BaseLogin";
 import Logo from "./(master)/layout/Logo";
 import Copyright from "./(master)/layout/Copyright";
-import LoginForm from "@/app/auth/LoginForm";
+import LoginForm from "@/app/[locale]/auth/LoginForm";
 import ThemeToggler from "@/_common/components/ThemeToggler";
 import LoginSideInfo from "./auth/LoginSideInfo";
+import { useTranslation } from "react-i18next";
 
 const Root = () => {
+  const { t } = useTranslation(["common"]);
+
   return (
     <main className="relative h-screen w-screen overflow-auto flex justify-center items-center  bg-gradient !bg-cover !bg-center">
       <div className="bg-background text-foreground max-w-[1920px] max-h-[1080px] xl:min-w-[1240px] xl:min-h-[650px] w-full h-full  xl:w-[80%] xl:h-[85%] shadow-lg rounded-sm border-[2px] lg:grid lg:grid-cols-[2fr_3fr] items-center justify-evenly">
@@ -16,7 +21,7 @@ const Root = () => {
           <div className="p-14">
             <div className=" flex flex-col justify-center items-center">
               <p className="font-semibold text-xl p-2 text-primary">
-                Welcome Back
+                {t("headings.welcome_back")}
               </p>
               <p className="font-normal text-sm p-2 text-muted-foreground">
                 Please login using the information below

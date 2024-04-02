@@ -33,7 +33,7 @@ const Root = () => {
             <Copyright />
           </div>
         </div>
-        <div className="lg:relative w-full h-full flex justify-center items-center p-4 bg-card text-card-foreground">
+        <div className="lg:relative w-full h-full flex justify-center items-center px-4 bg-card text-card-foreground">
           <LoginSideInfo />
           <div className="absolute top-1 right-1">
             <BaseLogin newAppBase="/" />

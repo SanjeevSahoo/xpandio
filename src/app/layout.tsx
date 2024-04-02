@@ -6,6 +6,7 @@ import { THEME_LIST } from "@/_common/constants";
 import { SessionProvider } from "next-auth/react";
 import { Suspense } from "react";
 import i18nConfig from "@/app/localization/i18nConfig";
+import { dir } from "i18next";
 
 export const metadata: Metadata = {
   title: "Xpandio App",
@@ -24,7 +25,7 @@ export default function RootLayout({
   params: { locale: string };
 }>) {
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} dir={dir(locale)} suppressHydrationWarning>
       <body>
         <Suspense>
           <SessionProvider>

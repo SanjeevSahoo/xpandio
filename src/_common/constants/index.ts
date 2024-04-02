@@ -17,7 +17,7 @@ const DEFAULT_REDIRECT = "/dashboard";
 
 const THEME_LIST = ["light", "dark", "light-green"];
 
-const PUBLIC_COPYRIGHT_ORG = process.env.PUBLIC_COPYRIGHT_ORG || "";
+const COPYRIGHT_ORG = process.env.NEXT_PUBLIC_COPYRIGHT_ORG || "";
 
 export {
   BASE_DB_TYPE,
@@ -28,5 +28,5 @@ export {
   PUBLIC_CRYPTO_KEY,
   LDAP_HOSTS,
   LDAP_HOSTS_TML,
-  PUBLIC_COPYRIGHT_ORG,
+  COPYRIGHT_ORG,
 };

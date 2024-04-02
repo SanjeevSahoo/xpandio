@@ -2,8 +2,8 @@
 
 import ThemeToggler from "@/_common/components/ThemeToggler";
 import { appStore } from "@/_common/store/appStore";
-import LogoutButton from "@/app/auth/LogoutButton";
-import LogoutTimer from "@/app/auth/LogoutTimer";
+import LogoutButton from "@/app/[locale]/auth/LogoutButton";
+import LogoutTimer from "@/app/[locale]/auth/LogoutTimer";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 

@@ -2,11 +2,13 @@
 
 import BaseLogin from "./auth/BaseLogin";
 import Logo from "./(master)/layout/Logo";
-import Copyright from "./(master)/layout/Copyright";
 import LoginForm from "@/app/[locale]/auth/LoginForm";
 import ThemeToggler from "@/_common/components/ThemeToggler";
 import LoginSideInfo from "./auth/LoginSideInfo";
 import { useTranslation } from "react-i18next";
+
+import dynamic from "next/dynamic";
+import Copyright from "./(master)/layout/Copyright";
 
 const Root = () => {
   const { t } = useTranslation(["common"]);

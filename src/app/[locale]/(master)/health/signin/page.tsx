@@ -1,5 +1,5 @@
-import BaseLogin from "@/app/auth/BaseLogin";
-import LoginForm from "@/app/auth/LoginForm";
+import BaseLogin from "@/app/[locale]/auth/BaseLogin";
+import LoginForm from "@/app/[locale]/auth/LoginForm";
 
 const Root = () => {
   return (

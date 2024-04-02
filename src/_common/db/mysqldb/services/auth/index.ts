@@ -1,5 +1,5 @@
 import { simpleQuery } from "@/_common/db/mysqldb/connection";
-import TAuthUser from "@/app/auth/types/TAuthUser";
+import TAuthUser from "@/app/[locale]/auth/types/TAuthUser";
 
 type TAuthQueryData = {
   error: boolean;

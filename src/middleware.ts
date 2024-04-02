@@ -26,12 +26,14 @@ export async function middleware(request: NextRequest) {
         currLocale = locale;
       }
     });
+
     const localePublicRoutes = PUBLIC_ROUTES.map(
       (item) => `/${currLocale}${item}`
     );
     const localeDefaultRedirect = `/${currLocale}${DEFAULT_REDIRECT}`;
     const localeRoot = `/${currLocale}${ROOT}`;
 
+    console.log(localePublicRoutes, localeDefaultRedirect, localeRoot);
     const isAuthenticated: boolean = Boolean(authResponse?.user);
     const isPublicRoute = localePublicRoutes.includes(request.nextUrl.pathname);
 

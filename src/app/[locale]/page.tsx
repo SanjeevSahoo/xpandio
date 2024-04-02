@@ -7,6 +7,7 @@ import ThemeToggler from "@/_common/components/ThemeToggler";
 import LoginSideInfo from "./auth/LoginSideInfo";
 import { useTranslation } from "react-i18next";
 import Copyright from "./(master)/layout/Copyright";
+import LanguageChanger from "../localization/LanguageChanger";
 
 const Root = () => {
   const { t } = useTranslation(["common"]);
@@ -37,6 +38,7 @@ const Root = () => {
           <LoginSideInfo />
           <div className="absolute top-1 right-1">
             <BaseLogin newAppBase="/" />
+            <LanguageChanger />
             <ThemeToggler />
           </div>
         </div>

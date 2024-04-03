@@ -7,7 +7,7 @@ import ThemeToggler from "@/_common/components/ThemeToggler";
 import LoginSideInfo from "./auth/LoginSideInfo";
 import { useTranslation } from "react-i18next";
 import Copyright from "./(master)/layout/Copyright";
-import LanguageChanger from "../localization/LanguageChanger";
+import LanguageChanger from "@/_common/components/LanguageChanger";
 
 const Root = () => {
   const { t } = useTranslation(["common"]);
@@ -36,7 +36,7 @@ const Root = () => {
         </div>
         <div className="lg:relative w-full h-full flex justify-center items-center px-4 bg-card text-card-foreground">
           <LoginSideInfo />
-          <div className="absolute top-1 right-1">
+          <div className="absolute top-1 right-1 flex justify-between items-center gap-2">
             <BaseLogin newAppBase="/" />
             <LanguageChanger />
             <ThemeToggler />

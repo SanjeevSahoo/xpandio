@@ -6,6 +6,12 @@ import { Input } from "@/_common/components/ui/input";
 import { Button } from "@/_common/components/ui/button";
 import { usePathname } from "next/navigation";
 import { encryptData } from "@/_common/utils/crypto";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/_common/components/ui/alert";
+import { AlertCircle } from "lucide-react";
 
 const loginInitialState = {
   message: "",
@@ -29,7 +35,20 @@ const SubmitButton = () => {
       >
         Sign In
       </Button>
-      {formStatus.pending && <p className="text-red-500">Loading....</p>}
+      {formStatus.pending && (
+        <div className="flex justify-center items-center border-1">
+          <div className="grid grid-cols-[auto_1fr] gap-2 justify-center items-center  h-[50px] p-2">
+            <div className="relative inline-flex">
+              <div className="w-5 h-5 bg-primary rounded-full"></div>
+              <div className="w-5 h-5 bg-primary rounded-full absolute top-0 left-0 animate-ping"></div>
+              <div className="w-5 h-5 bg-primary rounded-full absolute top-0 left-0 animate-pulse"></div>
+            </div>
+            <div className="font-normal text-sm">
+              Please Wait ...! Authentication in Progress
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
@@ -63,7 +82,12 @@ const LoginForm = () => {
       <div className="py-2">
         <SubmitButton />
       </div>
-      {formState.message && <p className="text-red-500">Invalid Credentials</p>}
+      {formState.message && (
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Invalid Credentials. Try again</AlertTitle>
+        </Alert>
+      )}
     </form>
   );
 };

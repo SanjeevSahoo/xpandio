@@ -1,8 +1,9 @@
 import { simpleQuery } from "@/_common/db/oracledb/connection";
 import oracledb from "oracledb";
 import ldap from "ldapjs";
-import TAuthUser from "@/app/auth/types/TAuthUser";
+
 import { LDAP_HOSTS, LDAP_HOSTS_TML } from "@/_common/constants";
+import TAuthUser from "@/app/[locale]/auth/types/TAuthUser";
 
 type TAuthQueryData = {
   error: boolean;

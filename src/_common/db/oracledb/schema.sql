@@ -177,7 +177,7 @@ create table t_exp_project_modules
     module_lead_id number,
     client_spoc_id number,
     module_admins varchar2(255)
-)
+);
 
 alter table t_exp_project_modules
 add constraint pk_exp_projectmodules_id primary key (id);
@@ -205,7 +205,7 @@ create table t_exp_menus
     mas_id number,   
     sr_no number, 
     menu_type varchar2(100) not null, -- Relative / Absolute
-    menu_url varchar2(255)
+    menu_url varchar2(255),
     project_id number,
     module_id number, 
     crt_by number,

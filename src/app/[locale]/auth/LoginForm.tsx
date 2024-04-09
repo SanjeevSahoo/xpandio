@@ -36,7 +36,7 @@ const SubmitButton = () => {
         Sign In
       </Button>
       {formStatus.pending && (
-        <div className="flex justify-center items-center border-1">
+        <div className="flex justify-center items-center ">
           <div className="grid grid-cols-[auto_1fr] gap-2 justify-center items-center  h-[50px] p-2">
             <div className="relative inline-flex">
               <div className="w-5 h-5 bg-primary rounded-full"></div>

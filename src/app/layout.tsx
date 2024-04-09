@@ -5,26 +5,19 @@ import "@/app/globals.css";
 import { THEME_LIST } from "@/_common/constants";
 import { SessionProvider } from "next-auth/react";
 import { Suspense } from "react";
-import i18nConfig from "@/app/localization/i18nConfig";
 
 export const metadata: Metadata = {
   title: "Xpandio App",
   description: "A Portal for accessing various next gen apps",
 };
 
-export function generateStaticParams() {
-  return i18nConfig.locales.map((locale) => ({ locale }));
-}
-
 export default function RootLayout({
   children,
-  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
 }>) {
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html suppressHydrationWarning>
       <body>
         <Suspense>
           <SessionProvider>

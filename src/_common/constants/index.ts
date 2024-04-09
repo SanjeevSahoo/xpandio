@@ -12,7 +12,7 @@ const LDAP_HOSTS_TML = LDAP_HOSTS.split(",").map((item) => ({
 }));
 
 const ROOT = "/";
-const PUBLIC_ROUTES = ["/", "/health/signin"];
+const PUBLIC_ROUTES = ["/", "/en", "/hi", "/mr", "/health/signin"];
 const DEFAULT_REDIRECT = "/dashboard";
 
 const THEME_LIST = ["light", "dark", "light-green"];

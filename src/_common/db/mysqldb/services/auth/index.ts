@@ -6,11 +6,6 @@ type TAuthQueryData = {
   errorMessage: string;
   data: TAuthUser;
 };
-type TCountQueryData = {
-  error: boolean;
-  errorMessage: string;
-  data: number;
-};
 
 const authenticateUser = async (
   username: string,
@@ -67,52 +62,4 @@ const authenticateUser = async (
   return retVal;
 };
 
-const getUserCount = async (): Promise<TCountQueryData> => {
-  let retVal: TCountQueryData = {
-    error: false,
-    errorMessage: "",
-    data: 0,
-  };
-
-  try {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-    let resultUsers: any = await simpleQuery(
-      `SELECT  
-          count(id) countval
-        FROM
-            t_frm_users t1
-        WHERE
-              t1.sap_status = 'Active'           
-        `,
-      []
-    ).catch((err) => {
-      console.log(err);
-      return {
-        errorMessage: "DB Error",
-        errorTransKey: "api_res_db_error",
-      };
-    });
-
-    if (!resultUsers || resultUsers.errorMessage) {
-      retVal.error = true;
-      retVal.errorMessage = resultUsers.errorMessage;
-    } else {
-      const currUsers: { countval: number }[] = resultUsers[0];
-
-      if (currUsers.length > 0) {
-        retVal.data = currUsers[0].countval;
-      } else {
-        retVal.error = true;
-        retVal.errorMessage = "User Count not found";
-      }
-    }
-  } catch (err) {
-    console.log(err);
-    retVal.error = true;
-    retVal.errorMessage = "Unknown DB Error";
-  }
-
-  return retVal;
-};
-
-export { authenticateUser, getUserCount };
+export { authenticateUser };

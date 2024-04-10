@@ -19,19 +19,17 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning>
       <body>
-        <Suspense>
-          <SessionProvider>
-            <NextThemesProvider
-              attribute="class"
-              defaultTheme="light"
-              enableSystem={false}
-              disableTransitionOnChange
-              themes={[...THEME_LIST]}
-            >
-              {children}
-            </NextThemesProvider>
-          </SessionProvider>
-        </Suspense>
+        <SessionProvider>
+          <NextThemesProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem={false}
+            disableTransitionOnChange
+            themes={[...THEME_LIST]}
+          >
+            {children}
+          </NextThemesProvider>
+        </SessionProvider>
       </body>
     </html>
   );

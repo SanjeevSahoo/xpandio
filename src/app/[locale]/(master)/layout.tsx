@@ -5,7 +5,7 @@ import { appStore } from "@/_common/store/appStore";
 import LogoutButton from "@/app/[locale]/auth/LogoutButton";
 import LogoutTimer from "@/app/[locale]/auth/LogoutTimer";
 import { useSession } from "next-auth/react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function RootLayout({
   children,
@@ -13,8 +13,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const { data: session } = useSession();
+  const router = useRouter();
 
   const pathname = usePathname();
+  const handleTasks = () => {
+    router.push("/tasks");
+  };
 
   const appMode = appStore((state) => state.appMode);
   if (appMode === "NA") {
@@ -49,6 +53,7 @@ export default function RootLayout({
           <p className="text-blue-800">{session?.user?.email}</p>
         </div>
         <div className="flex justify-end items-center p-2">
+          <button onClick={handleTasks}>go to tasks</button>
           <ThemeToggler />
           <LogoutTimer />
         </div>

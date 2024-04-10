@@ -15,7 +15,7 @@ const ROOT = "/";
 const PUBLIC_ROUTES = ["/", "/en", "/hi", "/mr", "/health/signin"];
 const DEFAULT_REDIRECT = "/dashboard";
 
-const THEME_LIST = ["light", "dark", "light-green"];
+const THEME_LIST = ["light", "dark"];
 
 const COPYRIGHT_ORG = process.env.NEXT_PUBLIC_COPYRIGHT_ORG || "";
 

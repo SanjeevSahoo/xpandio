@@ -112,7 +112,9 @@ create table t_exp_projects
     crt_by number,
     crt_date date,
     upd_by number,
-    upd_date date
+    upd_date date,
+    project_admins varchar(255),
+    status varchar2(50) not null
 );
 
 alter table t_exp_projects
@@ -176,7 +178,10 @@ create table t_exp_project_modules
     disp_name varchar2(255) not null,
     module_lead_id number,
     client_spoc_id number,
-    module_admins varchar2(255)
+    module_admins varchar2(255),
+    logo_url varchar2(255),
+    short_desc varchar2(500),
+    status varchar2(50)
 );
 
 alter table t_exp_project_modules

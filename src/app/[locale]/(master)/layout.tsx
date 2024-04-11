@@ -6,6 +6,8 @@ import LogoutButton from "@/app/[locale]/auth/LogoutButton";
 import LogoutTimer from "@/app/[locale]/auth/LogoutTimer";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
+import Sidebar from "./layout/Sidebar";
+import Header from "./layout/Header";
 
 export default function RootLayout({
   children,
@@ -45,8 +47,15 @@ export default function RootLayout({
   }
 
   return (
-    <div className="grid grid-rows-[auto_1fr] h-screen w-screen p-1">
-      <div className="grid grid-cols-[1fr_auto_auto] justify-between items-center p-1">
+    <div className="grid grid-rows-[auto_1fr] h-screen w-screen bg-background text-foreground">
+      <div className="grid grid-cols-[auto_1fr]">
+        <Sidebar />
+        <div className="grid grid-rows-[auto_1fr]">
+          <Header />
+          <div className="h-full w-full overflow-auto">{children}</div>
+        </div>
+      </div>
+      {/* <div className="grid grid-cols-[1fr_auto_auto] justify-between items-center p-1">
         <div className="flex justify-between items-center">
           <p>Master App</p>
           <p className="text-blue-800">{session?.user?.name}</p>
@@ -60,8 +69,7 @@ export default function RootLayout({
         <div className="flex justify-end items-center p-2">
           <LogoutButton />
         </div>
-      </div>
-      <div className="h-full w-full overflow-auto">{children}</div>
+      </div> */}
     </div>
   );
 }

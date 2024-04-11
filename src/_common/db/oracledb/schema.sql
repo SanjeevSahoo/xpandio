@@ -114,7 +114,8 @@ create table t_exp_projects
     upd_by number,
     upd_date date,
     project_admins varchar(255),
-    status varchar2(50) not null
+    status varchar2(50) not null,
+    base_url varchar2(100)
 );
 
 alter table t_exp_projects
@@ -132,7 +133,17 @@ BEGIN
   FROM   dual;
 END;
 
-insert into t_exp_projects (name, stage, hosting_status, disp_name, logo_url, project_lead_id, creation_type, client_dept, client_spoc_id, team_id, crt_date, upd_date) values ('Occupational Health Portal', 'Development', 'In App', 'Health App', 'health_logo.png', 1, 'App', 'Health', 1, 1, SYSDATE, SYSDATE);
+insert into t_exp_projects (name, status, short_desc, stage, hosting_status, disp_name, logo_url, project_lead_id, creation_type, client_dept, client_spoc_id, team_id, crt_date, upd_date, base_url) values ('Occupational Health', 'Active', 'App for Management Health related data for Employees', 'Development', 'In App', 'Health App', 'health_logo.png', 1, 'App', 'Health', 1, 1, SYSDATE, SYSDATE, '/health');
+insert into t_exp_projects (name, status, short_desc, stage, hosting_status, disp_name, logo_url, project_lead_id, creation_type, client_dept, client_spoc_id, team_id, crt_date, upd_date, base_url) values ('Project Management', 'Active', 'Managing Tasks for the Team, Including Performance parameters and Daily activity', 'Development', 'In App', 'Project Management', 'project_logo.png', 1, 'App', 'Internal', 1, 1, SYSDATE, SYSDATE,'/project');
+insert into t_exp_projects (name, status, short_desc, stage, hosting_status, disp_name, logo_url, project_lead_id, creation_type, client_dept, client_spoc_id, team_id, crt_date, upd_date, base_url) values ('CR Management', 'Active', 'Change Request management for Apps or Projects hosted on the platform', 'Development', 'In App', 'CR Management', 'cr_logo.png', 1, 'App', 'Internal', 1, 1, SYSDATE, SYSDATE,'/change');
+insert into t_exp_projects (name, status, short_desc, stage, hosting_status, disp_name, logo_url, project_lead_id, creation_type, client_dept, client_spoc_id, team_id, crt_date, upd_date, base_url) values ('Ticketing System', 'Active', 'Ticketing system for managing support tickets and their resolution history', 'Development', 'In App', 'Ticketing App', 'ticketing_logo.png', 1, 'App', 'Internal', 1, 1, SYSDATE, SYSDATE,'/ticket');
+insert into t_exp_projects (name, status, short_desc, stage, hosting_status, disp_name, logo_url, project_lead_id, creation_type, client_dept, client_spoc_id, team_id, crt_date, upd_date, base_url) values ('Quiz App', 'Active', 'A general purpose utiity app for creating and conducting Quiz', 'Development', 'In App', 'Quiz App', 'quiz_logo.png', 1, 'App', 'Internal', 1, 1, SYSDATE, SYSDATE,'/quiz');
+insert into t_exp_projects (name, status, short_desc, stage, hosting_status, disp_name, logo_url, project_lead_id, creation_type, client_dept, client_spoc_id, team_id, crt_date, upd_date, base_url) values ('Survey App', 'Active', 'A general purpose utility app for Individual for Creating a Survey', 'Development', 'In App', 'Survey App', 'survey_logo.png', 1, 'App', 'Internal', 1, 1, SYSDATE, SYSDATE,'/survey');
+insert into t_exp_projects (name, status, short_desc, stage, hosting_status, disp_name, logo_url, project_lead_id, creation_type, client_dept, client_spoc_id, team_id, crt_date, upd_date, base_url) values ('Document Management', 'Active', 'Documents management such as User Manual, PPT etc used in the platform', 'Development', 'In App', 'Document Mangement', 'document_logo.png', 1, 'App', 'Internal', 1, 1, SYSDATE, SYSDATE,'/document');
+insert into t_exp_projects (name, status, short_desc, stage, hosting_status, disp_name, logo_url, project_lead_id, creation_type, client_dept, client_spoc_id, team_id, crt_date, upd_date, base_url) values ('Learning App', 'Active', 'A Learning module for PDF or Video based Learning in various categories', 'Development', 'In App', 'LMS App', 'lms_logo.png', 1, 'App', 'Internal', 1, 1, SYSDATE, SYSDATE,'/learning');
+insert into t_exp_projects (name, status, short_desc, stage, hosting_status, disp_name, logo_url, project_lead_id, creation_type, client_dept, client_spoc_id, team_id, crt_date, upd_date, base_url) values ('Questin and Answer App', 'Active', 'A Question and Anwer module for general discussion on various categories', 'Development', 'In App', 'QnA App', 'qna_logo.png', 1, 'App', 'Internal', 1, 1, SYSDATE, SYSDATE,'/qna');
+insert into t_exp_projects (name, status, short_desc, stage, hosting_status, disp_name, logo_url, project_lead_id, creation_type, client_dept, client_spoc_id, team_id, crt_date, upd_date, base_url) values ('Safety Management', 'Active', 'Managing and Tracking Safety Initiavies in the Organisation', 'Development', 'In App', 'Safety App', 'safety_logo.png', 1, 'App', 'Internal', 1, 1, SYSDATE, SYSDATE,'/safety');
+
 
 
 -- FRM PROJECT MEMBERS
@@ -200,6 +211,120 @@ BEGIN
 END;
 
 
+insert into t_exp_project_modules (project_id, name, disp_name, module_lead_id, client_spoc_id, logo_url, short_desc, status) values (10, 'Safety Observation', 'Safety Observation', 1, 1, 'safety_sos_logo.png', 'Tracking Behaviour Safety and Reporting', 'Active');
+insert into t_exp_project_modules (project_id, name, disp_name, module_lead_id, client_spoc_id, logo_url, short_desc, status) values (10, 'Incident Investigation', 'Incident Investigation', 1, 1, 'safety_iis_logo.png', 'Tracking Incident and Investigation record keeping', 'Active');
+
+
+
+create table t_exp_roles 
+(
+    id number
+    name varchar2(255) not null,
+    role_assign_auth varchar2(255) not null, 
+    status varchar2(50) not null,
+    project_id number,
+    module_id number,
+    crt_by number,
+    crt_date date
+);
+
+alter table t_exp_roles
+add constraint pk_exp_roles_id primary key (id);
+
+
+CREATE SEQUENCE t_exp_roles_pk_seq START WITH 1;
+
+CREATE OR REPLACE TRIGGER tr_exp_roles_pk_seq 
+BEFORE INSERT ON t_exp_roles
+FOR EACH ROW
+BEGIN
+  SELECT t_exp_roles_pk_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+
+insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Default', '[2]', 'Active', null, null, SYSDATESYSDATE);
+insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Super User', '[]', 'Active', null, null, SYSDATE);
+
+
+insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Manager', '[2]', 'Active', 2, null, SYSDATE);
+insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Team Lead', '[2,3]', 'Active', 2, null, SYSDATE);
+insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Developer', '[2,3]', 'Active', 2, null, SYSDATE);
+insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Super Person', '[2,3]', 'Active', 2, null, SYSDATE);
+insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Tester', '[2,3]', 'Active', 2, null, SYSDATE);
+insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Client Spoc', '[2,3]', 'Active', 2, null, SYSDATE);
+
+-- FRM USER APPS
+
+create table t_exp_user_roles
+(
+    id number,
+    role_id number not null,
+    user_id number not null,
+    crt_by number,
+    crt_date date
+);
+
+alter table t_exp_user_roles
+add constraint pk_exp_rolesuser_id primary key (id);
+
+
+CREATE SEQUENCE t_exp_user_roles_pk_seq START WITH 1;
+
+CREATE OR REPLACE TRIGGER tr_exp_user_roles_pk_seq 
+BEFORE INSERT ON t_exp_user_roles
+FOR EACH ROW
+BEGIN
+  SELECT t_exp_user_roles_pk_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+insert into t_exp_user_roles (role_id, user_id, crt_date) values (1,1,SYSDATE);
+insert into t_exp_user_roles (role_id, user_id, crt_date) values (1,3,SYSDATE);
+insert into t_exp_user_roles (role_id, user_id, crt_date) values (2,1,SYSDATE);
+insert into t_exp_user_roles (role_id, user_id, crt_date) values (2,2,SYSDATE);
+insert into t_exp_user_roles (role_id, user_id, crt_date) values (3,1,SYSDATE);
+
+-- FRM USER ROLES
+
+create table t_exp_user_apps
+(
+    id int not null primary key AUTO_INCREMENT,
+    project_id int not null,
+    user_id int not null,
+    crt_by int,
+    crt_date datetime
+);
+
+alter table t_exp_user_apps
+add constraint pk_exp_rolesapp_id primary key (id);
+
+
+CREATE SEQUENCE t_exp_user_apps_pk_seq START WITH 1;
+
+CREATE OR REPLACE TRIGGER tr_exp_user_apps_pk_seq 
+BEFORE INSERT ON t_exp_user_apps
+FOR EACH ROW
+BEGIN
+  SELECT t_exp_user_apps_pk_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+insert into t_exp_user_apps (project_id, user_id, crt_date) values (1,1,SYSDATE);
+insert into t_exp_user_apps (project_id, user_id, crt_date) values (2,1,SYSDATE);
+insert into t_exp_user_apps (project_id, user_id, crt_date) values (1,2,SYSDATE);
+insert into t_exp_user_apps (project_id, user_id, crt_date) values (2,2,SYSDATE);
+insert into t_exp_user_apps (project_id, user_id, crt_date) values (3,2,SYSDATE);
+insert into t_exp_user_apps (project_id, user_id, crt_date) values (4,2,SYSDATE);
+insert into t_exp_user_apps (project_id, user_id, crt_date) values (5,2,SYSDATE);
+insert into t_exp_user_apps (project_id, user_id, crt_date) values (6,2,SYSDATE);
+insert into t_exp_user_apps (project_id, user_id, crt_date) values (7,2,SYSDATE);
+insert into t_exp_user_apps (project_id, user_id, crt_date) values (8,2,SYSDATE);
+insert into t_exp_user_apps (project_id, user_id, crt_date) values (9,2,SYSDATE);
+insert into t_exp_user_apps (project_id, user_id, crt_date) values (10,2,SYSDATE);
 
 -- FRM MENUS
 
@@ -231,3 +356,95 @@ BEGIN
   INTO   :new.id
   FROM   dual;
 END;
+
+
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Dashboard', null, 1, 'Relative', '/dashboard', null, null, SYSDATE);
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Administration', null, 2, 'Parent',null, null, null, SYSDATE);
+
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Roles', 2, 1, 'Relative','/roles', null, null, SYSDATE);
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Apps', 2, 2, 'Relative','/apps', null, null, SYSDATE);
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Menus', 2, 3, 'Relative','/menus', null, null, SYSDATE);
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Users', 2, 4, 'Relative','/users', null, null, SYSDATE);
+
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Dashboard', null, 1, 'Relative','/health', 1, null, SYSDATE);
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Employee Search', null, 2, 'Relative','/health/empsearch', 1, null, SYSDATE);
+
+
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Dashboard', null, 1, 'Relative','/project', 2, null, SYSDATE);
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Administration', null, 2, 'Parent',null, 2, null, SYSDATE);
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Teams', 10, 1, 'Parent','/project/teams', 2, null, SYSDATE);
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Projects', 10, 2, 'Parent','/project/projects', 2, null, SYSDATE);
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Configuration', 10, 3, 'Parent','/project/configs', 2, null, SYSDATE);
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Tasks', null, 2, 'Relative','/project/tasks', 2, null, SYSDATE);
+
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Dashboard', null, 1, 'Relative','/safety', 10, null, SYSDATE);
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Safety Observation', null, 1, 'Parent',null, 10, 1, SYSDATE);
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Log Observation', 16, 1, 'Relative','/safety/observation/log', 10, 1, SYSDATE);
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('View Observation', 16, 2, 'Relative','/safety/observation/view', 10, 1, SYSDATE);
+
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Incident Investigation', null, 2, 'Parent',null, 10, 2, SYSDATE);
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Log Incident', 19, 1, 'Relative','/safety/Incident/log', 10, 2, SYSDATE);
+insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('View Incident', 19, 2, 'Relative','/safety/Incident/view', 10, 2, SYSDATE);
+
+
+-- FRM MENU ACCESS
+
+create table t_exp_menu_access 
+(
+    id number,
+    role_id number not null,
+    menu_id number not null,
+    crt_by number,
+    crt_date date
+);
+
+
+alter table t_exp_menu_access
+add constraint pk_exp_menuaccess_id primary key (id);
+
+
+CREATE SEQUENCE t_exp_menu_access_pk_seq START WITH 1;
+
+CREATE OR REPLACE TRIGGER tr_exp_menu_access_pk_seq 
+BEFORE INSERT ON alter table t_exp_menu_access
+
+FOR EACH ROW
+BEGIN
+  SELECT t_exp_menu_access_pk_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (1,1,SYSDATE);
+
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,1,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,2,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,3,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,4,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,5,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,6,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,7,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,8,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,9,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,10,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,11,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,12,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,13,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,14,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,15,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,16,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,17,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,18,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,19,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,20,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (2,21,SYSDATE);
+
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (3,9,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (3,10,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (3,11,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (3,12,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (3,13,SYSDATE);
+insert into t_exp_menu_access (role_id, menu_id, crt_date) values (3,14,SYSDATE);
+
+

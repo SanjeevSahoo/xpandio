@@ -1,11 +1,7 @@
 "use client";
 
-import ThemeToggler from "@/_common/components/ThemeToggler";
 import { appStore } from "@/_common/store/appStore";
-import LogoutButton from "@/app/[locale]/auth/LogoutButton";
-import LogoutTimer from "@/app/[locale]/auth/LogoutTimer";
-import { useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Sidebar from "./layout/Sidebar";
 import Header from "./layout/Header";
 
@@ -14,13 +10,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { data: session } = useSession();
-  const router = useRouter();
-
   const pathname = usePathname();
-  const handleTasks = () => {
-    router.push("/tasks");
-  };
 
   const appMode = appStore((state) => state.appMode);
   if (appMode === "NA") {

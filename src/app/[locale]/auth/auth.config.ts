@@ -21,6 +21,7 @@ export const authConfig = {
         token._id = user._id || "";
         token.email = user.email || "";
         token.emp_id = user.emp_id || "";
+        token.designation = user.designation || "";
       }
 
       return token;
@@ -29,6 +30,7 @@ export const authConfig = {
       session.user._id = token._id || "";
       session.user.email = token.email || "";
       session.user.emp_id = token.emp_id || "";
+      session.user.designation = token.designation || "";
       return session;
     },
   },

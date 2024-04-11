@@ -43,7 +43,7 @@ const authenticateUser = async (
   let retVal: TAuthQueryData = {
     error: false,
     errorMessage: "",
-    data: { _id: "", email: "", emp_id: "", name: "" },
+    data: { _id: "", email: "", emp_id: "", designation: "", name: "" },
   };
 
   // LDAP authentication
@@ -76,7 +76,8 @@ const authenticateUser = async (
       `SELECT  
           id "_id",          
           email "email",
-          emp_id "emp_id",          
+          emp_id "emp_id",   
+          NVL(designation, 'User') "designation",       
           name "name",
           password "password"
         FROM
@@ -118,6 +119,7 @@ const authenticateUser = async (
               name: currUsers[0].name,
               email: currUsers[0].email,
               emp_id: currUsers[0].emp_id,
+              designation: currUsers[0].designation,
             };
           } else {
             retVal.error = true;
@@ -130,6 +132,7 @@ const authenticateUser = async (
             name: currUsers[0].name,
             email: currUsers[0].email,
             emp_id: currUsers[0].emp_id,
+            designation: currUsers[0].designation,
           };
         }
       } else {

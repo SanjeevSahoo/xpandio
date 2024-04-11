@@ -14,7 +14,7 @@ const authenticateUser = async (
   let retVal: TAuthQueryData = {
     error: false,
     errorMessage: "",
-    data: { _id: "", email: "", emp_id: "", name: "" },
+    data: { _id: "", email: "", emp_id: "", designation: "", name: "" },
   };
 
   try {
@@ -22,7 +22,8 @@ const authenticateUser = async (
       `SELECT  
           id "_id",          
           email "email",
-          emp_id "emp_id",          
+          emp_id "emp_id",      
+          IFNULL(designation, 'User') "designation",    
           name "name"
         FROM
             t_frm_users t1

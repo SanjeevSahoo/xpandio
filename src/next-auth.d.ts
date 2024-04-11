@@ -7,6 +7,7 @@ declare module "next-auth" {
       id: string;
       _id: string;
       emp_id: string;
+      designation: string;
     } & DefaultSession["user"];
     error: string;
   }
@@ -15,6 +16,7 @@ declare module "next-auth" {
     _id: string;
     email: string;
     emp_id: string;
+    designation: string;
     name: string;
   }
 }
@@ -24,5 +26,6 @@ declare module "next-auth/jwt" {
     userId: string;
     _id: string;
     emp_id: string;
+    designation: string;
   }
 }

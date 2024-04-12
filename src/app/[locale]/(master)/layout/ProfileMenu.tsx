@@ -3,11 +3,27 @@
 import { useSession } from "next-auth/react";
 import React from "react";
 import Image from "next/image";
+import { Button } from "@/_common/components/ui/button";
+import { appStore } from "@/_common/store/appStore";
 
 function ProfileMenu() {
   const { data: session } = useSession();
+  const appDrawerStatus = appStore((state) => state.appDrawerStatus);
+  const setAppDrawerStatus = appStore((state) => state.setAppDrawerStatus);
+
+  const handleSettingsToggle = () => {
+    setAppDrawerStatus({
+      sidebar: false,
+      settings: !appDrawerStatus.settings,
+      notification: false,
+    });
+  };
+
   return (
-    <div className="grid grid-cols-[auto_1fr] items-center gap-1 w-[200px]">
+    <div
+      className="grid grid-cols-[auto_1fr] items-center gap-1 w-[200px] cursor-pointer hover:bg-accent p-1"
+      onClick={handleSettingsToggle}
+    >
       <div>
         <Image
           src={"/images/profile/default_profile_icon.png"}

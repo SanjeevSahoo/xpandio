@@ -4,6 +4,7 @@ import { appStore } from "@/_common/store/appStore";
 import { usePathname } from "next/navigation";
 import Sidebar from "./layout/Sidebar";
 import Header from "./layout/Header";
+import Settings from "./layout/Settings";
 
 export default function RootLayout({
   children,
@@ -13,6 +14,7 @@ export default function RootLayout({
   const pathname = usePathname();
 
   const appMode = appStore((state) => state.appMode);
+
   if (appMode === "NA") {
     return (
       <div className="flex gap-2 justify-center items-center  h-screen p-2">
@@ -37,7 +39,7 @@ export default function RootLayout({
   }
 
   return (
-    <div className="grid grid-rows-[auto_1fr] h-screen w-screen bg-background text-foreground">
+    <div className="grid grid-rows-[auto_1fr] h-screen w-screen bg-background text-foreground relative overflow-hidden">
       <div className="grid grid-cols-[auto_1fr]">
         <Sidebar />
         <div className="grid grid-rows-[auto_1fr]">
@@ -45,21 +47,7 @@ export default function RootLayout({
           <div className="h-full w-full overflow-auto">{children}</div>
         </div>
       </div>
-      {/* <div className="grid grid-cols-[1fr_auto_auto] justify-between items-center p-1">
-        <div className="flex justify-between items-center">
-          <p>Master App</p>
-          <p className="text-blue-800">{session?.user?.name}</p>
-          <p className="text-blue-800">{session?.user?.email}</p>
-        </div>
-        <div className="flex justify-end items-center p-2">
-          <button onClick={handleTasks}>go to tasks</button>
-          <ThemeToggler />
-          <LogoutTimer />
-        </div>
-        <div className="flex justify-end items-center p-2">
-          <LogoutButton />
-        </div>
-      </div> */}
+      <Settings />
     </div>
   );
 }

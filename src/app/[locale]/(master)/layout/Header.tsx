@@ -8,7 +8,7 @@ import ProfileMenu from "./ProfileMenu";
 
 function Header() {
   return (
-    <div className="flex justify-between items-center bg-card p-1">
+    <div className="flex justify-between items-center bg-card shadow-md">
       <div className="flex items-center justify-between gap-2 w-[200px]">
         <SideBarToggler />
         <SelectedMenuTitle />

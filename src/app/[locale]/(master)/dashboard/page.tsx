@@ -1,13 +1,7 @@
 import React from "react";
-import LogoutButton from "../../auth/LogoutButton";
 
 function Dashboard() {
-  return (
-    <div>
-      Master Dashboard
-      <LogoutButton />
-    </div>
-  );
+  return <div>Master Dashboard</div>;
 }
 
 export default Dashboard;

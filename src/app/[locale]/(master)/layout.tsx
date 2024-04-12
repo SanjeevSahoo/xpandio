@@ -39,8 +39,8 @@ export default function RootLayout({
   }
 
   return (
-    <div className="grid grid-rows-[auto_1fr] h-screen w-screen bg-background text-foreground relative overflow-hidden">
-      <div className="grid grid-cols-[auto_1fr]">
+    <div className="grid grid-rows-[1fr] h-screen w-screen bg-background text-foreground relative overflow-hidden">
+      <div className="grid grid-cols-[auto_1fr] w-full h-full overflow-auto ">
         <Sidebar />
         <div className="grid grid-rows-[auto_1fr]">
           <Header />

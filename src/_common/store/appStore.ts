@@ -23,7 +23,7 @@ export const appStore = create<TAppState>()(
     (set) => ({
       appBase: "/",
       appMode: "NA",
-      appDrawerStatus: { sidebar: true, settings: false, notification: false },
+      appDrawerStatus: { sidebar: false, settings: false, notification: false },
       setAppBase: (newAppBase) => set(() => ({ appBase: newAppBase })),
       setAppMode: (newAppMode) => set(() => ({ appMode: newAppMode })),
       setAppDrawerStatus: (newAppDrawerStatus) =>

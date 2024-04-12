@@ -9,12 +9,11 @@ import ProfileMenu from "./ProfileMenu";
 function Header() {
   return (
     <div className="flex justify-between items-center bg-card shadow-md">
-      <div className="flex items-center justify-between gap-2 w-[200px]">
+      <div className="flex items-center justify-between gap-2 w-[200px] px-1">
         <SideBarToggler />
         <SelectedMenuTitle />
       </div>
-      <div className="flex items-center justify-between gap-1 ">
-        <SearchBox />
+      <div className="flex items-center justify-between gap-2 ">
         <NotificationToggler />
         <ThemeToggler />
         <ProfileMenu />

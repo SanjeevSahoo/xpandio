@@ -23,7 +23,7 @@ async function Dashboard() {
     return <div>You donot have access to any App.</div>;
   }
   return (
-    <div className="w-full overflow-auto grid items-center justify-evenly grid-cols-[repeat(auto-fit,250px)] gap-6 p-4">
+    <div className="w-full h-full overflow-auto grid items-center justify-evenly grid-cols-[repeat(auto-fit,250px)] gap-6 p-4">
       {appList.map((app) => (
         <AppLink key={app.id} app={app} />
       ))}

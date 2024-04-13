@@ -18,6 +18,9 @@ export async function login(prevState: any, formData: FormData) {
     const decPassword = decryptData(password || "");
 
     let appBase = pathname || "/dashboard";
+    if (appBase === "/") {
+      appBase = "/dashboard";
+    }
     appBase = appBase.replace("/signin", "");
 
     await signIn("credentials", {

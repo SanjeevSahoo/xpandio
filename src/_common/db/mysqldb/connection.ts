@@ -14,8 +14,8 @@ function simpleQuery(statement: string, binds: any[] = []) {
 
     try {
       conn = await mysql2.createConnection(DB_CONFIG);
-      const result = await conn.execute(statement, binds);
-      resolve(result);
+      const [rows] = await conn.execute(statement, binds);
+      resolve(JSON.parse(JSON.stringify(rows)));
     } catch (err) {
       reject(err);
     } finally {

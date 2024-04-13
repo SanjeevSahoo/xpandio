@@ -26,7 +26,7 @@ export const appStore = create<TAppState>()(
   persist(
     (set) => ({
       appBase: "/",
-      appMode: "NA",
+      appMode: "Default",
       selectedApp: DEFAULT_APP,
       appDrawerStatus: { sidebar: false, settings: false, notification: false },
       setAppBase: (newAppBase) => set(() => ({ appBase: newAppBase })),

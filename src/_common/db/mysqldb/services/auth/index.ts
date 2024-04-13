@@ -52,7 +52,7 @@ const authenticateUser = async (
       retVal.error = true;
       retVal.errorMessage = resultUsers.errorMessage;
     } else {
-      const currUsers: TAuthUser[] = resultUsers[0];
+      const currUsers: TAuthUser[] = resultUsers;
 
       if (currUsers.length > 0) {
         retVal.data = { ...currUsers[0] };
@@ -84,17 +84,17 @@ const getUserAllApps = async (userId: number): Promise<TAppsQueryData> => {
           t1.name "name",
           t1.stage "stage",
           t1.hosting_status "hosting_status",
-          t1.hosting_url "hosting_url",
+          IFNULL(t1.hosting_url,'') "hosting_url",
           t1.disp_name "disp_name",
           t1.short_desc "short_desc",
           t1.logo_url "logo_url",
           t1.project_lead_id "project_lead_id",
           t1.creation_type "creation_type",
-          t1.own_login_url "own_login_url",
+          IFNULL(t1.own_login_url,'') "own_login_url",
           t1.client_dept "client_dept",
           t1.client_spoc_id "client_spoc_id",
           t1.team_id "team_id",
-          t1.project_admins "project_admins",
+          IFNULL(t1.project_admins,'') "project_admins",
           t1.status "status",
           t1.base_url "base_url"
         FROM
@@ -119,7 +119,7 @@ const getUserAllApps = async (userId: number): Promise<TAppsQueryData> => {
       retVal.error = true;
       retVal.errorMessage = resultApps.errorMessage;
     } else {
-      const currApps: TApp[] = resultApps[0];
+      const currApps: TApp[] = resultApps;
 
       if (currApps.length > 0) {
         retVal.data = [...currApps];

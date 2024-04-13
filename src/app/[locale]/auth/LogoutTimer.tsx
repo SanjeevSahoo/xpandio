@@ -8,22 +8,7 @@ const LogoutTimer = () => {
   const { data: session, status } = useSession();
   const [timer, setTimer] = useState({ minutes: 0, seconds: 0 });
   const router = useRouter();
-
-  // useEffect(() => {
-  //   const handleTabClose = () => {
-  //     signOut({ redirect: false });
-  //     let signInBase = appBase || "/";
-  //     signInBase = signInBase === "/" ? "/" : `${appBase}/signin`;
-  //     router.replace(signInBase);
-  //   };
-
-  //   window.addEventListener("beforeunload", handleTabClose);
-
-  //   return () => {
-  //     window.removeEventListener("beforeunload", handleTabClose);
-  //   };
-  // }, []);
-
+  console.log("timer", session);
   useEffect(() => {
     if (session) {
       const interval = setInterval(() => {

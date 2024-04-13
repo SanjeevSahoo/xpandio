@@ -3,15 +3,15 @@ import { NextThemesProvider } from "@/_common/components/NextThemesProvider";
 
 import "@/app/globals.css";
 import { THEME_LIST } from "@/_common/constants";
-import { SessionProvider } from "next-auth/react";
 import { Suspense } from "react";
+import AuthSessionProvider from "@/app/[locale]/auth/AuthSessionProvider";
 
 export const metadata: Metadata = {
   title: "Xpandio App",
   description: "A Portal for accessing various next gen apps",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -19,8 +19,8 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning>
       <body>
-        <Suspense>
-          <SessionProvider>
+        <AuthSessionProvider>
+          <Suspense>
             <NextThemesProvider
               attribute="class"
               defaultTheme="light"
@@ -30,8 +30,8 @@ export default function RootLayout({
             >
               {children}
             </NextThemesProvider>
-          </SessionProvider>
-        </Suspense>
+          </Suspense>
+        </AuthSessionProvider>
       </body>
     </html>
   );

@@ -3,7 +3,6 @@
 import { useSession } from "next-auth/react";
 import React from "react";
 import Image from "next/image";
-import { Button } from "@/_common/components/ui/button";
 import { appStore } from "@/_common/store/appStore";
 
 function ProfileMenu() {

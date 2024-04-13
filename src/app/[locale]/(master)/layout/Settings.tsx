@@ -12,7 +12,7 @@ function Settings() {
     : " -right-[250px] ";
   return (
     <div
-      className={`absolute top-[47px] right-0 duration-500 h-[calc(100%-48px)] w-[250px] shadow-md grid grid-rows-[auto_1fr] bg-card text-card-foreground ${drawerStatusClass}`}
+      className={`absolute top-[47px]  duration-500 h-[calc(100%-48px)] w-[250px] shadow-md grid grid-rows-[auto_1fr] bg-card text-card-foreground ${drawerStatusClass}`}
     >
       <div>Settings</div>
       <div className="flex items-start justify-center">

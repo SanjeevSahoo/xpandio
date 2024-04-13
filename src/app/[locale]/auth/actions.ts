@@ -13,20 +13,13 @@ export async function login(prevState: any, formData: FormData) {
   try {
     const username = formData.get("username")?.toString();
     const password = formData.get("password")?.toString();
-    const pathname = formData.get("pathname")?.toString();
     const decDomainId = decryptData(username || "");
     const decPassword = decryptData(password || "");
-
-    let appBase = pathname || "/dashboard";
-    if (appBase === "/") {
-      appBase = "/dashboard";
-    }
-    appBase = appBase.replace("/signin", "");
 
     await signIn("credentials", {
       username: decDomainId,
       password: decPassword,
-      redirectTo: appBase,
+      redirectTo: "/dashboard",
     });
 
     return {
@@ -58,10 +51,6 @@ export async function login(prevState: any, formData: FormData) {
   }
 }
 
-export async function logout(formData: FormData) {
-  const pathname = formData.get("pathname");
-  let signInBase = pathname ? pathname.toString() : "/";
-
-  signInBase = signInBase === "/" ? "/" : `${signInBase}/signin`;
-  await signOut({ redirectTo: signInBase });
+export async function logout() {
+  await signOut({ redirectTo: "/" });
 }

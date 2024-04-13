@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Support from "./Support";
 import TMenu from "@/_common/types/TMenu";
+import LogoutTimer from "../../auth/LogoutTimer";
 
 function Sidebar() {
   const appDrawerStatus = appStore((state) => state.appDrawerStatus);
@@ -16,9 +17,9 @@ function Sidebar() {
 
   const drawerSubStatusClass = appDrawerStatus.sidebar ? " flex " : " hidden ";
 
-  useEffect(() => {
-    console.log(selectedApp);
-  }, [selectedApp]);
+  // useEffect(() => {
+  //   console.log(selectedApp);
+  // }, [selectedApp]);
   return (
     <div
       className={`duration-500 bg-accent text-accent-foreground  h-full z-10 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] grid grid-rows-[auto_1fr_auto] overflow-hidden border-[1px]  ${drawerStatusClass}`}
@@ -53,7 +54,9 @@ function Sidebar() {
         <div className="flex items-center justify-center w-[50px]  bg-primary text-primary-foreground   rounded-b-md ">
           <Support />
         </div>
-        <div className={`${drawerSubStatusClass}`}></div>
+        <div className={`${drawerSubStatusClass}`}>
+          <LogoutTimer />
+        </div>
       </div>
     </div>
   );

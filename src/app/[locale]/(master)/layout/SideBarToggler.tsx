@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/_common/components/ui/button";
 import { appStore } from "@/_common/store/appStore";
 import { Menu } from "lucide-react";

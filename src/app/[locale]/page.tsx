@@ -1,6 +1,5 @@
 "use client";
 
-import BaseLogin from "./auth/BaseLogin";
 import Logo from "./(master)/layout/Logo";
 import LoginForm from "@/app/[locale]/auth/LoginForm";
 import ThemeToggler from "@/_common/components/ThemeToggler";
@@ -10,14 +9,13 @@ import Copyright from "./(master)/layout/Copyright";
 import LanguageChanger from "@/_common/components/LanguageChanger";
 import { appStore } from "@/_common/store/appStore";
 import { useEffect } from "react";
-import { DEFAULT_APP } from "@/_common/constants";
 
 const Root = () => {
   const { t } = useTranslation(["common"]);
-  const setSelectedApp = appStore((state) => state.setSelectedApp);
+  const resetAppStore = appStore((state) => state.resetAppStore);
 
   useEffect(() => {
-    setSelectedApp(DEFAULT_APP);
+    resetAppStore();
   }, []);
 
   return (
@@ -45,7 +43,6 @@ const Root = () => {
         <div className="lg:relative w-full h-full flex justify-center items-center px-4 bg-secondary text-secondary-foreground">
           <LoginSideInfo />
           <div className="absolute top-1 right-1 flex justify-between items-center gap-2">
-            <BaseLogin newAppBase="/" />
             <LanguageChanger />
             <ThemeToggler />
           </div>

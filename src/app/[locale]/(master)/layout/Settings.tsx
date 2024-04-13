@@ -9,7 +9,7 @@ function Settings() {
 
   const drawerStatusClass = appDrawerStatus.settings
     ? " right-0 "
-    : " -right-[250px] ";
+    : " -right-[250px] hidden";
   return (
     <div
       className={`absolute top-[47px]  duration-500 h-[calc(100%-48px)] w-[250px] shadow-md grid grid-rows-[auto_1fr] bg-card text-card-foreground ${drawerStatusClass}`}

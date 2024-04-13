@@ -1,12 +1,10 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { appStore } from "@/_common/store/appStore";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const LogoutTimer = () => {
-  const appBase = appStore((state) => state.appBase);
   const { data: session, status } = useSession();
   const [timer, setTimer] = useState({ minutes: 0, seconds: 0 });
   const router = useRouter();
@@ -35,9 +33,8 @@ const LogoutTimer = () => {
         setTimer({ minutes, seconds });
         if (time <= 0) {
           signOut({ redirect: false });
-          let signInBase = appBase || "/";
-          signInBase = signInBase === "/" ? "/" : `${appBase}/signin`;
-          router.replace(signInBase);
+
+          router.replace("/");
         }
       }, 1000);
 

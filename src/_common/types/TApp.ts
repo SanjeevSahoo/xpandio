@@ -1,0 +1,20 @@
+type TApp = {
+  id: number;
+  name: string;
+  stage: string;
+  hosting_status: string;
+  hosting_url: string;
+  disp_name: string;
+  short_desc: string;
+  logo_url: string;
+  project_lead_id: number;
+  creation_type: string;
+  own_login_url: string;
+  client_dept: string;
+  client_spoc_id: number;
+  team_id: number;
+  project_admins: string;
+  status: string;
+  base_url: string;
+};
+export default TApp;

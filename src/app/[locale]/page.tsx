@@ -8,9 +8,17 @@ import LoginSideInfo from "./auth/LoginSideInfo";
 import { useTranslation } from "react-i18next";
 import Copyright from "./(master)/layout/Copyright";
 import LanguageChanger from "@/_common/components/LanguageChanger";
+import { appStore } from "@/_common/store/appStore";
+import { useEffect } from "react";
+import { DEFAULT_APP } from "@/_common/constants";
 
 const Root = () => {
   const { t } = useTranslation(["common"]);
+  const setSelectedApp = appStore((state) => state.setSelectedApp);
+
+  useEffect(() => {
+    setSelectedApp(DEFAULT_APP);
+  }, []);
 
   return (
     <main className="relative h-screen w-screen overflow-auto flex justify-center items-center  bg-gradient !bg-cover !bg-center">

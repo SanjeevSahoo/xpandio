@@ -6,11 +6,7 @@ import { Input } from "@/_common/components/ui/input";
 import { Button } from "@/_common/components/ui/button";
 import { usePathname } from "next/navigation";
 import { encryptData } from "@/_common/utils/crypto";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/_common/components/ui/alert";
+import { Alert, AlertTitle } from "@/_common/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 
 const loginInitialState = {
@@ -60,6 +56,7 @@ const LoginForm = () => {
   const handleFormAction = (formData: FormData) => {
     formData.set("username", encryptData(formData.get("username")));
     formData.set("password", encryptData(formData.get("password")));
+    sessionStorage.setItem("xpandioapp", new Date().toISOString());
     formAction(formData);
   };
 

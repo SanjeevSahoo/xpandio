@@ -26,7 +26,6 @@ async function Dashboard() {
 
   return (
     <div className="w-full h-full overflow-auto grid items-center justify-evenly grid-cols-[repeat(auto-fit,250px)] gap-6 p-4">
-      <LogoutTimer />
       {appList.map((app) => (
         <AppLink key={app.id} app={app} />
       ))}

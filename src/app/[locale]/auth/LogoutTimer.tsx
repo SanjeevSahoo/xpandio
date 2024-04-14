@@ -3,12 +3,17 @@
 import React, { useEffect, useState } from "react";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { Session } from "next-auth";
 
-const LogoutTimer = () => {
-  const { data: session, status } = useSession();
+interface IProps {
+  session: Session | null;
+}
+
+const LogoutTimer = (props: IProps) => {
+  const { session } = props;
+  // const { data: session, status } = useSession();
   const [timer, setTimer] = useState({ minutes: 0, seconds: 0 });
   const router = useRouter();
-  console.log("timer", session);
   useEffect(() => {
     if (session) {
       const interval = setInterval(() => {
@@ -18,14 +23,13 @@ const LogoutTimer = () => {
         setTimer({ minutes, seconds });
         if (time <= 0) {
           signOut({ redirect: false });
-
           router.replace("/");
         }
       }, 1000);
 
       return () => clearInterval(interval);
     }
-  }, [session, status]);
+  }, [session]);
   return (
     <div>
       {timer.minutes}:{timer.seconds}

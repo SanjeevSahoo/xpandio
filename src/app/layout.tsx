@@ -4,7 +4,6 @@ import { NextThemesProvider } from "@/_common/components/NextThemesProvider";
 import "@/app/globals.css";
 import { THEME_LIST } from "@/_common/constants";
 import { Suspense } from "react";
-import AuthSessionProvider from "@/app/[locale]/auth/AuthSessionProvider";
 
 export const metadata: Metadata = {
   title: "Xpandio App",
@@ -19,19 +18,17 @@ export default async function RootLayout({
   return (
     <html suppressHydrationWarning>
       <body>
-        <AuthSessionProvider>
-          <Suspense>
-            <NextThemesProvider
-              attribute="class"
-              defaultTheme="light"
-              enableSystem={false}
-              disableTransitionOnChange
-              themes={[...THEME_LIST]}
-            >
-              {children}
-            </NextThemesProvider>
-          </Suspense>
-        </AuthSessionProvider>
+        <Suspense>
+          <NextThemesProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem={false}
+            disableTransitionOnChange
+            themes={[...THEME_LIST]}
+          >
+            {children}
+          </NextThemesProvider>
+        </Suspense>
       </body>
     </html>
   );

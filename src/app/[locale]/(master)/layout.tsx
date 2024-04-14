@@ -1,8 +1,9 @@
 import Sidebar from "./layout/Sidebar";
 import Header from "./layout/Header";
 import Settings from "./layout/Settings";
+import LogoutTimer from "../auth/LogoutTimer";
 
-export default function MasterLayout({
+export default async function MasterLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

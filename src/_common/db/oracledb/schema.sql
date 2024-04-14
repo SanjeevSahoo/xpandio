@@ -214,11 +214,11 @@ END;
 insert into t_exp_project_modules (project_id, name, disp_name, module_lead_id, client_spoc_id, logo_url, short_desc, status) values (10, 'Safety Observation', 'Safety Observation', 1, 1, 'safety_sos_logo.png', 'Tracking Behaviour Safety and Reporting', 'Active');
 insert into t_exp_project_modules (project_id, name, disp_name, module_lead_id, client_spoc_id, logo_url, short_desc, status) values (10, 'Incident Investigation', 'Incident Investigation', 1, 1, 'safety_iis_logo.png', 'Tracking Incident and Investigation record keeping', 'Active');
 
-
+-- FRM ROLES 
 
 create table t_exp_roles 
 (
-    id number
+    id number,
     name varchar2(255) not null,
     role_assign_auth varchar2(255) not null, 
     status varchar2(50) not null,
@@ -244,7 +244,7 @@ BEGIN
 END;
 
 
-insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Default', '[2]', 'Active', null, null, SYSDATESYSDATE);
+insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Default', '[2]', 'Active', null, null, SYSDATE);
 insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Super User', '[]', 'Active', null, null, SYSDATE);
 
 
@@ -282,7 +282,7 @@ BEGIN
 END;
 
 insert into t_exp_user_roles (role_id, user_id, crt_date) values (1,1,SYSDATE);
-insert into t_exp_user_roles (role_id, user_id, crt_date) values (1,3,SYSDATE);
+insert into t_exp_user_roles (role_id, user_id, crt_date) values (1,68636,SYSDATE);
 insert into t_exp_user_roles (role_id, user_id, crt_date) values (2,1,SYSDATE);
 insert into t_exp_user_roles (role_id, user_id, crt_date) values (2,2,SYSDATE);
 insert into t_exp_user_roles (role_id, user_id, crt_date) values (3,1,SYSDATE);
@@ -291,11 +291,11 @@ insert into t_exp_user_roles (role_id, user_id, crt_date) values (3,1,SYSDATE);
 
 create table t_exp_user_apps
 (
-    id int not null primary key AUTO_INCREMENT,
-    project_id int not null,
-    user_id int not null,
-    crt_by int,
-    crt_date datetime
+    id number,
+    project_id number not null,
+    user_id number not null,
+    crt_by number,
+    crt_date date
 );
 
 alter table t_exp_user_apps
@@ -325,6 +325,7 @@ insert into t_exp_user_apps (project_id, user_id, crt_date) values (7,2,SYSDATE)
 insert into t_exp_user_apps (project_id, user_id, crt_date) values (8,2,SYSDATE);
 insert into t_exp_user_apps (project_id, user_id, crt_date) values (9,2,SYSDATE);
 insert into t_exp_user_apps (project_id, user_id, crt_date) values (10,2,SYSDATE);
+insert into t_exp_user_apps (project_id, user_id, crt_date) values (2,68636,SYSDATE);
 
 -- FRM MENUS
 
@@ -406,7 +407,7 @@ add constraint pk_exp_menuaccess_id primary key (id);
 CREATE SEQUENCE t_exp_menu_access_pk_seq START WITH 1;
 
 CREATE OR REPLACE TRIGGER tr_exp_menu_access_pk_seq 
-BEFORE INSERT ON alter table t_exp_menu_access
+BEFORE INSERT ON table t_exp_menu_access
 
 FOR EACH ROW
 BEGIN

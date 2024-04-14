@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Session } from "next-auth";
 
@@ -18,8 +18,13 @@ const LogoutTimer = (props: IProps) => {
     if (session) {
       const interval = setInterval(() => {
         const time = Date.parse(session.expires) - Date.now();
+
         const minutes = Math.floor((time / 1000 / 60) % 60);
         const seconds = Math.floor((time / 1000) % 60);
+        // if (time / 1000 / 60 >= 29.5) {
+        //   console.log(minutes, "yes", time / 1000 / 60);
+        // }
+
         setTimer({ minutes, seconds });
         if (time <= 0) {
           signOut({ redirect: false });

@@ -54,9 +54,7 @@ function Sidebar() {
         <div className="flex items-center justify-center w-[50px]  bg-primary text-primary-foreground   rounded-b-md ">
           <Support />
         </div>
-        <div className={`${drawerSubStatusClass}`}>
-          <LogoutTimer />
-        </div>
+        <div className={`${drawerSubStatusClass}`}></div>
       </div>
     </div>
   );

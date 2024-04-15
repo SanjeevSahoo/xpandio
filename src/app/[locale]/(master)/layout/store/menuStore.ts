@@ -7,7 +7,7 @@ interface TMenuState {
   setSelectedMenu: (newMenu: TMenu) => void;
 }
 
-export const appStore = create<TMenuState>()(
+export const menuStore = create<TMenuState>()(
   persist(
     (set) => ({
       selectedMenu: {

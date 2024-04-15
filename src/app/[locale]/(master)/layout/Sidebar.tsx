@@ -5,9 +5,10 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Support from "./Support";
 import TMenu from "@/_common/types/TMenu";
-import LogoutTimer from "../../auth/LogoutTimer";
+import { usePathname } from "next/navigation";
 
 function Sidebar() {
+  const pathname = usePathname();
   const appDrawerStatus = appStore((state) => state.appDrawerStatus);
   const selectedApp = appStore((state) => state.selectedApp);
   const [menuList, setMenuList] = useState<TMenu[]>([]);
@@ -16,7 +17,9 @@ function Sidebar() {
     : " w-[50px] ";
 
   const drawerSubStatusClass = appDrawerStatus.sidebar ? " flex " : " hidden ";
-
+  // useEffect(() => {
+  //   console.log(pathname);
+  // }, [pathname]);
   // useEffect(() => {
   //   console.log(selectedApp);
   // }, [selectedApp]);

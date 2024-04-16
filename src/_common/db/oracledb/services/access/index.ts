@@ -1,9 +1,10 @@
 import { DEFAULT_APP } from "@/_common/constants";
-import { simpleQuery } from "@/_common/db/mysqldb/connection";
+import { simpleQuery } from "@/_common/db/oracledb/connection";
+import oracledb from "oracledb";
 import TApp from "@/_common/types/TApp";
 import TAppQueryData from "@/_common/types/TAppQueryData";
-import TMenu from "@/_common/types/TMenu";
 import TMenusQueryData from "@/_common/types/TMenusQueryData";
+import TMenu from "@/_common/types/TMenu";
 
 const getUrlWiseApp = async (baseUrl: string): Promise<TAppQueryData> => {
   let retVal: TAppQueryData = {
@@ -15,31 +16,37 @@ const getUrlWiseApp = async (baseUrl: string): Promise<TAppQueryData> => {
   try {
     let resultApps: any = await simpleQuery(
       `SELECT  
-          t1.id "id",
-          t1.name "name",
-          t1.stage "stage",
-          t1.hosting_status "hosting_status",
-          IFNULL(t1.hosting_url,'') "hosting_url",
-          t1.disp_name "disp_name",
-          t1.short_desc "short_desc",
-          t1.logo_url "logo_url",
-          t1.project_lead_id "project_lead_id",
-          t1.creation_type "creation_type",
-          IFNULL(t1.own_login_url,'') "own_login_url",
-          t1.client_dept "client_dept",
-          t1.client_spoc_id "client_spoc_id",
-          t1.team_id "team_id",
-          IFNULL(t1.project_admins,'') "project_admins",
-          t1.status "status",
-          t1.base_url "base_url"
-        FROM
-          t_exp_projects t1
-        WHERE
-              t1.status = 'Active'
-            AND t1.creation_type = 'App' 
-            AND t1.base_url = ?
-        `,
-      [baseUrl]
+        t1.id "id",
+        t1.name "name",
+        t1.stage "stage",
+        t1.hosting_status "hosting_status",
+        t1.hosting_url "hosting_url",
+        t1.disp_name "disp_name",
+        t1.short_desc "short_desc",
+        t1.logo_url "logo_url",
+        t1.project_lead_id "project_lead_id",
+        t1.creation_type "creation_type",
+        t1.own_login_url "own_login_url",
+        t1.client_dept "client_dept",
+        t1.client_spoc_id "client_spoc_id",
+        t1.team_id "team_id",
+        t1.project_admins "project_admins",
+        t1.status "status",
+        t1.base_url "base_url"
+      FROM
+        t_exp_projects t1 
+      WHERE
+            t1.status = 'Active'
+          AND t1.creation_type = 'App' 
+          AND t1.base_url = :curr_base_url
+      ORDER BY t1.name ASC`,
+      {
+        curr_base_url: {
+          dir: oracledb.BIND_IN,
+          val: baseUrl,
+          type: oracledb.STRING,
+        },
+      }
     ).catch((err) => {
       console.log(err);
       return {
@@ -52,13 +59,10 @@ const getUrlWiseApp = async (baseUrl: string): Promise<TAppQueryData> => {
       retVal.error = true;
       retVal.errorMessage = resultApps.errorMessage;
     } else {
-      const currApps: TApp[] = resultApps;
+      const currApps: TApp[] = resultApps.rows;
 
       if (currApps.length > 0) {
         retVal.data = { ...currApps[0] };
-      } else {
-        retVal.error = true;
-        retVal.errorMessage = "App not found with given url";
       }
     }
   } catch (err) {
@@ -100,13 +104,23 @@ const getAppWiseMenus = async (
               t1.status = 'Active' 
             AND t1.id = t2.menu_id 
             AND t2.role_id = t3.role_id 
-            AND t3.user_id = ?
-            AND t1.project_id = ?
-        ORDER BY
+            AND t3.user_id = :curr_user_id
+            AND t1.project_id = :curr_app_id
+        ORDER BY 
           t1.mas_id,
-          t1.sr_no ASC
-        `,
-      [userId, appId]
+          t1.sr_no ASC`,
+      {
+        curr_user_id: {
+          dir: oracledb.BIND_IN,
+          val: userId,
+          type: oracledb.NUMBER,
+        },
+        curr_app_id: {
+          dir: oracledb.BIND_IN,
+          val: appId,
+          type: oracledb.NUMBER,
+        },
+      }
     ).catch((err) => {
       console.log(err);
       return {
@@ -119,7 +133,7 @@ const getAppWiseMenus = async (
       retVal.error = true;
       retVal.errorMessage = resultMenus.errorMessage;
     } else {
-      const currMenus: TMenu[] = resultMenus;
+      const currMenus: TMenu[] = resultMenus.rows;
 
       if (currMenus.length > 0) {
         retVal.data = [...currMenus];

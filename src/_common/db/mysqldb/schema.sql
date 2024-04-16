@@ -151,8 +151,8 @@ create table t_exp_roles
     crt_date datetime
 );
 
-insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Default', '[2]', 'Active', null, null, NOW());
-insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Super User', '[]', 'Active', null, null, NOW());
+insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Default', '[2]', 'Active', 0, null, NOW());
+insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Super User', '[]', 'Active', 0, null, NOW());
 
 
 insert into t_exp_roles (name, role_assign_auth, status, project_id, module_id, crt_date) values ('Manager', '[2]', 'Active', 2, null, NOW());
@@ -217,38 +217,37 @@ create table t_exp_menus
     project_id int,
     module_id int, 
     crt_by int,
-    crt_date datetime
+    crt_date datetime,
+    status varchar(25)
 );
 
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Dashboard', null, 1, 'Relative', '/dashboard', null, null, NOW());
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Administration', null, 2, 'Parent',null, null, null, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Dashboard', null, 1, 'Relative', '/dashboard', 0, null, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Administration', null, 2, 'Parent',0, null, null, NOW());
 
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Roles', 2, 1, 'Relative','/roles', null, null, NOW());
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Apps', 2, 2, 'Relative','/apps', null, null, NOW());
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Menus', 2, 3, 'Relative','/menus', null, null, NOW());
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Users', 2, 4, 'Relative','/users', null, null, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Roles', 2, 1, 'Relative','/roles', 0, null, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Apps', 2, 2, 'Relative','/apps', 0, null, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Menus', 2, 3, 'Relative','/menus', 0, null, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Users', 2, 4, 'Relative','/users', 0, null, NOW());
 
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Dashboard', null, 1, 'Relative','/health', 1, null, NOW());
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Employee Search', null, 2, 'Relative','/health/empsearch', 1, null, NOW());
-
-
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Dashboard', null, 1, 'Relative','/project', 2, null, NOW());
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Administration', null, 2, 'Parent',null, 2, null, NOW());
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Teams', 10, 1, 'Parent','/project/teams', 2, null, NOW());
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Projects', 10, 2, 'Parent','/project/projects', 2, null, NOW());
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Configuration', 10, 3, 'Parent','/project/configs', 2, null, NOW());
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Tasks', null, 2, 'Relative','/project/tasks', 2, null, NOW());
-
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Dashboard', null, 1, 'Relative','/safety', 10, null, NOW());
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Safety Observation', null, 1, 'Parent',null, 10, 1, NOW());
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Log Observation', 16, 1, 'Relative','/safety/observation/log', 10, 1, NOW());
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('View Observation', 16, 2, 'Relative','/safety/observation/view', 10, 1, NOW());
-
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Incident Investigation', null, 2, 'Parent',null, 10, 2, NOW());
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Log Incident', 19, 1, 'Relative','/safety/Incident/log', 10, 2, NOW());
-insert into t_exp_menus (name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('View Incident', 19, 2, 'Relative','/safety/Incident/view', 10, 2, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Dashboard', null, 1, 'Relative','/health', 1, null, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Employee Search', null, 2, 'Relative','/health/empsearch', 1, null, NOW());
 
 
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Dashboard', null, 1, 'Relative','/project', 2, null, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Administration', null, 2, 'Parent',null, 2, null, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Teams', 10, 1, 'Parent','/project/teams', 2, null, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Projects', 10, 2, 'Parent','/project/projects', 2, null, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Configuration', 10, 3, 'Parent','/project/configs', 2, null, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Tasks', null, 2, 'Relative','/project/tasks', 2, null, NOW());
+
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Dashboard', null, 1, 'Relative','/safety', 10, null, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Safety Observation', null, 1, 'Parent',null, 10, 1, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Log Observation', 16, 1, 'Relative','/safety/observation/log', 10, 1, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'View Observation', 16, 2, 'Relative','/safety/observation/view', 10, 1, NOW());
+
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Incident Investigation', null, 2, 'Parent',null, 10, 2, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'Log Incident', 19, 1, 'Relative','/safety/Incident/log', 10, 2, NOW());
+insert into t_exp_menus (status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('Active', 'View Incident', 19, 2, 'Relative','/safety/Incident/view', 10, 2, NOW());
 
 -- FRM MENU ACCESS
 

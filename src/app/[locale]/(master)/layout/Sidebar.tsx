@@ -8,7 +8,10 @@ import TMenu from "@/_common/types/TMenu";
 import { usePathname } from "next/navigation";
 import { DEFAULT_APP } from "@/_common/constants";
 import { useRouter } from "next/navigation";
-import { getUrlWiseApp } from "@/_common/client-services/access";
+import {
+  getAppWiseMenus,
+  getUrlWiseApp,
+} from "@/_common/client-services/access";
 
 function Sidebar() {
   const pathname = usePathname();
@@ -22,25 +25,55 @@ function Sidebar() {
     : " w-[50px] ";
 
   const drawerSubStatusClass = appDrawerStatus.sidebar ? " flex " : " hidden ";
-  useEffect(() => {
-    const arrPathList = pathname.split("/").filter((item) => item !== "");
-    if (arrPathList.length > 0) {
-      const currPath = `/${arrPathList[0]}`;
-      if (currPath !== selectedApp.base_url) {
-        getUrlWiseApp(currPath).then((res) => {
-          if (!res.data.error) {
-            setSelectedApp(res.data.data);
-          } else {
-            setSelectedApp(DEFAULT_APP);
-            //router.replace(DEFAULT_APP.base_url);
-          }
-        });
-      }
-    }
-  }, [pathname, selectedApp]);
   // useEffect(() => {
-  //   console.log(selectedApp);
-  // }, [selectedApp]);
+  //   const arrPathList = pathname.split("/").filter((item) => item !== "");
+  //   if (arrPathList.length > 0) {
+  //     const currPath = `/${arrPathList[0]}`;
+  //     if (currPath !== selectedApp.base_url) {
+  //       getUrlWiseApp(currPath).then((res) => {
+  //         if (!res.data.error) {
+  //           setSelectedApp(res.data.data);
+  //         } else {
+  //           setSelectedApp(DEFAULT_APP);
+  //           //router.replace(DEFAULT_APP.base_url);
+  //         }
+  //       });
+  //     }
+  //   }
+  // }, [pathname, selectedApp]);
+
+  useEffect(() => {
+    getAppWiseMenus(selectedApp.id).then((res) => {
+      if (!res.data.error) {
+        setMenuList(res.data.data);
+      }
+    });
+  }, [selectedApp]);
+
+  const renderMenu = (masId: number) => {
+    const currMenuList = menuList.filter((item) => item.mas_id === masId);
+    if (currMenuList.length > 0) {
+      return (
+        <ul>
+          {currMenuList.map((item) => {
+            const currChild = menuList.filter(
+              (child) => child.mas_id === item.id
+            );
+            if (currChild.length > 0) {
+              return (
+                <li key={item.id}>
+                  {item.name}
+                  {renderMenu(item.id)}
+                </li>
+              );
+            } else {
+              return <li key={item.id}>{item.name}</li>;
+            }
+          })}
+        </ul>
+      );
+    }
+  };
 
   const handleGoHome = () => {
     setSelectedApp(DEFAULT_APP);
@@ -75,8 +108,8 @@ function Sidebar() {
           </div>
           <div className={`${drawerSubStatusClass}`}>&nbsp;</div>
         </div>
-        <div className="absolute top-0 left-0 h-full w-full overflow-hidden hover:overflow-auto  text-primary-foreground">
-          sss
+        <div className="absolute top-0 left-0 h-full w-full overflow-hidden hover:overflow-auto  text-primary">
+          {menuList && menuList.length > 0 && renderMenu(menuList[0].mas_id)}
         </div>
       </div>
       <div className="h-[45px] grid grid-cols-[auto_1fr] overflow-hidden ">

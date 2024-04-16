@@ -1,15 +1,10 @@
 import { DEFAULT_APP } from "@/_common/constants";
 import { simpleQuery } from "@/_common/db/mysqldb/connection";
 import TApp from "@/_common/types/TApp";
+import TAppQueryData from "@/_common/types/TAppQueryData";
 
-type TAppsQueryData = {
-  error: boolean;
-  errorMessage: string;
-  data: TApp;
-};
-
-const getUrlWiseApp = async (baseUrl: string): Promise<TAppsQueryData> => {
-  let retVal: TAppsQueryData = {
+const getUrlWiseApp = async (baseUrl: string): Promise<TAppQueryData> => {
+  let retVal: TAppQueryData = {
     error: false,
     errorMessage: "",
     data: { ...DEFAULT_APP },

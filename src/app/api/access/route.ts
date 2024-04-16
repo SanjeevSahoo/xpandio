@@ -8,9 +8,8 @@ export async function POST(request: Request) {
       const baseUrl = req["baseUrl"];
       if (baseUrl) {
         const resData = await AccessService.getUrlWiseApp(baseUrl);
-        if (!resData.error) {
-          return Response.json({ ...resData.data });
-        }
+
+        return Response.json({ ...resData });
       }
     }
   }

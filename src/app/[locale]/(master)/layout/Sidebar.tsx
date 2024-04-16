@@ -8,6 +8,7 @@ import TMenu from "@/_common/types/TMenu";
 import { usePathname } from "next/navigation";
 import { DEFAULT_APP } from "@/_common/constants";
 import { useRouter } from "next/navigation";
+import { getUrlWiseApp } from "@/_common/client-services/access";
 
 function Sidebar() {
   const pathname = usePathname();
@@ -24,8 +25,19 @@ function Sidebar() {
   useEffect(() => {
     const arrPathList = pathname.split("/").filter((item) => item !== "");
     if (arrPathList.length > 0) {
+      const currPath = `/${arrPathList[0]}`;
+      if (currPath !== selectedApp.base_url) {
+        getUrlWiseApp(currPath).then((res) => {
+          if (!res.data.error) {
+            setSelectedApp(res.data.data);
+          } else {
+            setSelectedApp(DEFAULT_APP);
+            //router.replace(DEFAULT_APP.base_url);
+          }
+        });
+      }
     }
-  }, [pathname]);
+  }, [pathname, selectedApp]);
   // useEffect(() => {
   //   console.log(selectedApp);
   // }, [selectedApp]);

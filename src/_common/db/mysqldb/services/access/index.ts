@@ -85,7 +85,7 @@ const getAppWiseMenus = async (
       `SELECT  DISTINCT
           t1.id "id",
           t1.name "name",
-          t1.mas_id "mas_id",
+          IFNULL(t1.mas_id,0) "mas_id",
           t1.sr_no "sr_no",
           t1.menu_type "menu_type",
           t1.menu_url "menu_url",
@@ -103,7 +103,7 @@ const getAppWiseMenus = async (
             AND t3.user_id = ?
             AND t1.project_id = ?
         ORDER BY
-          t1.mas_id,
+          IFNULL(t1.mas_id,0),
           t1.sr_no ASC
         `,
       [userId, appId]

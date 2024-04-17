@@ -30,7 +30,7 @@ function MenuItem(props: IProps) {
       <>
         <li
           onClick={handleChildOpen}
-          className="grid grid-cols-[auto_1fr_auto]  gap-2 h-[35px] w-full group cursor-pointer hover:bg-card"
+          className="grid grid-cols-[auto_1fr_auto]  gap-2 h-[35px] w-full group cursor-pointer hover:bg-card border-b"
         >
           <div className="w-[50px] flex justify-center items-center  ">
             <File className="h-5 w-5 text-primary-foreground group-hover:text-card-foreground" />
@@ -59,7 +59,7 @@ function MenuItem(props: IProps) {
       onClick={() => {
         handleMenuOpen(menu.menu_url);
       }}
-      className="grid grid-cols-[auto_1fr_auto]  gap-2 h-[35px] w-full group cursor-pointer hover:bg-card border"
+      className="grid grid-cols-[auto_1fr_auto]  gap-2 h-[35px] w-full group cursor-pointer hover:bg-card border-b"
     >
       <div className="w-[50px] flex justify-center items-center  ">
         <File className="h-5 w-5 text-primary-foreground group-hover:text-card-foreground" />
@@ -67,7 +67,7 @@ function MenuItem(props: IProps) {
       <div className="flex justify-start items-center   font-semibold text-sm group-hover:font-bold">
         {menu.name}
       </div>
-      <div className="w-[30px]">&nbsp;</div>
+      <div className="w-[35px]">&nbsp;</div>
     </li>
   );
 }

@@ -12,6 +12,7 @@ import {
   getAppWiseMenus,
   getUrlWiseApp,
 } from "@/_common/client-services/access";
+import MenuItem from "./MenuItem";
 
 function Sidebar() {
   const pathname = usePathname();
@@ -53,25 +54,9 @@ function Sidebar() {
   const renderMenu = (masId: number) => {
     const currMenuList = menuList.filter((item) => item.mas_id === masId);
     if (currMenuList.length > 0) {
-      return (
-        <ul>
-          {currMenuList.map((item) => {
-            const currChild = menuList.filter(
-              (child) => child.mas_id === item.id
-            );
-            if (currChild.length > 0) {
-              return (
-                <li key={item.id}>
-                  {item.name}
-                  {renderMenu(item.id)}
-                </li>
-              );
-            } else {
-              return <li key={item.id}>{item.name}</li>;
-            }
-          })}
-        </ul>
-      );
+      return currMenuList.map((item) => (
+        <MenuItem key={item.id} menu={item} menuList={menuList} />
+      ));
     }
   };
 

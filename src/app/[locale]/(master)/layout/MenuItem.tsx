@@ -16,6 +16,7 @@ function MenuItem(props: IProps) {
   const childMenus = menuList.filter((item) => item.mas_id === menu.id);
   const [childState, setChildState] = useState(false);
   const childClass = childState ? "" : " hidden ";
+  const firstMenuClass = menu.id === menuList[0].id ? "border-t" : "";
 
   const handleChildOpen = () => {
     setChildState((oldState) => !oldState);
@@ -30,7 +31,7 @@ function MenuItem(props: IProps) {
       <>
         <li
           onClick={handleChildOpen}
-          className="grid grid-cols-[auto_1fr_auto]  gap-2 h-[35px] w-full group cursor-pointer hover:bg-card border-b"
+          className={`grid grid-cols-[auto_1fr_auto]  gap-2 h-[35px] w-full group cursor-pointer hover:bg-card border-b ${firstMenuClass}`}
         >
           <div className="w-[50px] flex justify-center items-center  ">
             <File className="h-5 w-5 text-primary-foreground group-hover:text-card-foreground" />
@@ -59,7 +60,7 @@ function MenuItem(props: IProps) {
       onClick={() => {
         handleMenuOpen(menu.menu_url);
       }}
-      className="grid grid-cols-[auto_1fr_auto]  gap-2 h-[35px] w-full group cursor-pointer hover:bg-card border-b"
+      className={`grid grid-cols-[auto_1fr_auto]  gap-2 h-[35px] w-full group cursor-pointer hover:bg-card border-b ${firstMenuClass}`}
     >
       <div className="w-[50px] flex justify-center items-center  ">
         <File className="h-5 w-5 text-primary-foreground group-hover:text-card-foreground" />

@@ -1,18 +1,20 @@
 "use client";
 
 import TMenu from "@/_common/types/TMenu";
-import { File, ChevronDown, ChevronUp } from "lucide-react";
+import { File, ChevronDown, ChevronUp, Minus, LucideIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { menuStore } from "./store/menuStore";
+import { MENU_ICONS } from "./constant";
 
 interface IProps {
   menu: TMenu;
   menuList: TMenu[];
+  isChild: boolean;
 }
 
 function MenuItem(props: IProps) {
-  const { menu, menuList } = props;
+  const { menu, menuList, isChild } = props;
   const pathname = usePathname();
   const router = useRouter();
   const selectedMenu = menuStore((state) => state.selectedMenu);
@@ -22,8 +24,6 @@ function MenuItem(props: IProps) {
   const childClass = childState ? "" : " hidden ";
   const firstMenuClass = menu.id === menuList[0].id ? "" : "";
   const isSelected = menu.menu_url === pathname && selectedMenu.id === menu.id;
-
-  console.log(menu.menu_url, pathname, menu.id, selectedMenu.id);
 
   const selectedClassTick = isSelected ? " bg-card " : " group-hover:bg-card ";
   const selectedClassText = isSelected
@@ -38,6 +38,17 @@ function MenuItem(props: IProps) {
     router.replace(menu.menu_url);
   };
 
+  const getIconFile = (menu: TMenu) => {
+    let CurrIcon = MENU_ICONS.default as LucideIcon;
+    if (MENU_ICONS.hasOwnProperty(menu.menu_icon)) {
+      CurrIcon = MENU_ICONS[
+        menu.menu_icon as keyof typeof MENU_ICONS
+      ] as LucideIcon;
+    }
+
+    return <CurrIcon className="h-5 w-5 text-primary-foreground" />;
+  };
+
   if (childMenus.length > 0) {
     return (
       <>
@@ -46,12 +57,13 @@ function MenuItem(props: IProps) {
           className={`grid grid-cols-[auto_auto_1fr_auto] h-[45px] w-full group cursor-pointer   ${firstMenuClass}`}
         >
           <div className="w-[47px] flex justify-center items-center  ">
-            <File className="h-5 w-5 text-primary-foreground " />
+            {getIconFile(menu)}
           </div>
           <div className={`w-[4px]  ${selectedClassTick}`}>&nbsp;</div>
           <div
-            className={`flex justify-start items-center pl-2 font-bold text-sm  ${selectedClassText}`}
+            className={`flex justify-start items-center pl-2 gap-1 font-bold text-sm  ${selectedClassText}`}
           >
+            {isChild && <Minus className="h-3 w-3" />}
             {menu.name}
           </div>
           <div
@@ -66,7 +78,12 @@ function MenuItem(props: IProps) {
         </li>
         <ul className={`${childClass}`}>
           {childMenus.map((menuItem) => (
-            <MenuItem key={menuItem.id} menu={menuItem} menuList={menuList} />
+            <MenuItem
+              key={menuItem.id}
+              menu={menuItem}
+              menuList={menuList}
+              isChild={true}
+            />
           ))}
         </ul>
       </>
@@ -80,12 +97,13 @@ function MenuItem(props: IProps) {
       className={`grid grid-cols-[auto_auto_1fr_auto]   h-[45px] w-full group cursor-pointer   ${firstMenuClass}`}
     >
       <div className="w-[47px] flex justify-center items-center  ">
-        <File className="h-5 w-5 text-primary-foreground " />
+        {getIconFile(menu)}
       </div>
       <div className={`w-[4px]  ${selectedClassTick}`}>&nbsp;</div>
       <div
-        className={`flex justify-start items-center pl-2 font-bold text-sm  ${selectedClassText}`}
+        className={`flex justify-start items-center pl-2 gap-1 font-bold text-sm  ${selectedClassText}`}
       >
+        {isChild && <Minus className="h-3 w-3" />}
         {menu.name}
       </div>
       <div

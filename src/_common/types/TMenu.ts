@@ -8,5 +8,6 @@ type TMenu = {
   project_id: number;
   module_id: number;
   status: string;
+  menu_icon: string;
 };
 export default TMenu;

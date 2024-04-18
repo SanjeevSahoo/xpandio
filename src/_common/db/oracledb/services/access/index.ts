@@ -95,7 +95,8 @@ const getAppWiseMenus = async (
           t1.menu_url "menu_url",
           t1.project_id "project_id",
           t1.module_id "module_id",
-          t1.status "status"
+          t1.status "status",
+          t1.menu_icon "menu_icon"
         FROM
           t_exp_menus t1,
           t_exp_menu_access t2,

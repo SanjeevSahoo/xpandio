@@ -79,7 +79,7 @@ const LoginForm = () => {
       <div className="py-2">
         <SubmitButton />
       </div>
-      {formState.message && (
+      {formState && formState.message && (
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Invalid Credentials. Try again</AlertTitle>

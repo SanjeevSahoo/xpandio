@@ -19,6 +19,7 @@ export const menuStore = create<TMenuState>()(
         menu_url: "",
         project_id: 0,
         module_id: 0,
+        status: "Active",
       },
       setSelectedMenu: (newMenu) => set(() => ({ selectedMenu: newMenu })),
     }),

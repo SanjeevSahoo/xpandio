@@ -13,12 +13,14 @@ import {
   getUrlWiseApp,
 } from "@/_common/client-services/access";
 import MenuItem from "./MenuItem";
+import { menuStore } from "./store/menuStore";
 
 function Sidebar() {
   const pathname = usePathname();
   const appDrawerStatus = appStore((state) => state.appDrawerStatus);
   const selectedApp = appStore((state) => state.selectedApp);
   const setSelectedApp = appStore((state) => state.setSelectedApp);
+  const setSelectedMenu = menuStore((state) => state.setSelectedMenu);
   const router = useRouter();
   const [menuList, setMenuList] = useState<TMenu[]>([]);
   const drawerStatusClass = appDrawerStatus.sidebar
@@ -47,6 +49,9 @@ function Sidebar() {
     getAppWiseMenus(selectedApp.id).then((res) => {
       if (!res.data.error) {
         setMenuList(res.data.data);
+        if (res.data.data.length > 0) {
+          setSelectedMenu(res.data.data[0]);
+        }
       }
     });
   }, [selectedApp]);
@@ -93,7 +98,7 @@ function Sidebar() {
           </div>
           <div className={`${drawerSubStatusClass}`}>&nbsp;</div>
         </div>
-        <div className="absolute top-0 left-0 h-full w-full overflow-hidden hover:overflow-auto  text-primary">
+        <div className="absolute top-0 left-0 h-full w-full overflow-hidden hover:overflow-y-auto  text-primary">
           {menuList && menuList.length > 0 && renderMenu(menuList[0].mas_id)}
         </div>
       </div>

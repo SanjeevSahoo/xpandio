@@ -1,10 +1,10 @@
+export const dynamic = "force-dynamic";
+
 import React from "react";
 
 import AuthService from "@/_common/db/services/auth";
-
 import { auth } from "@/app/[locale]/auth";
 import AppLink from "../layout/AppLink";
-import LogoutTimer from "../../auth/LogoutTimer";
 
 async function Dashboard() {
   const session = await auth();

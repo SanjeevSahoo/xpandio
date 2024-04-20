@@ -12,10 +12,11 @@ interface IProps {
   menu: TMenu;
   menuList: TMenu[];
   isChild: boolean;
+  isRootItem: boolean;
 }
 
-function MenuItem(props: IProps) {
-  const { menu, menuList, isChild } = props;
+function HoverMenuItem(props: IProps) {
+  const { menu, menuList, isChild, isRootItem } = props;
   const pathname = usePathname();
   const router = useRouter();
   const selectedMenu = menuStore((state) => state.selectedMenu);
@@ -56,35 +57,37 @@ function MenuItem(props: IProps) {
       <>
         <li
           onClick={handleChildOpen}
-          className={`grid grid-cols-[auto_auto_1fr_auto] h-[45px] w-full group cursor-pointer   ${firstMenuClass}`}
+          className={`grid grid-cols-[auto_auto] h-[45px] w-full group cursor-pointer   ${firstMenuClass}`}
         >
           <div className="w-[47px] flex justify-center items-center  ">
             {getIconFile(menu)}
           </div>
           <div className={`w-[4px]  ${selectedClassTick}`}>&nbsp;</div>
           <div
-            className={`flex justify-start items-center pl-2 gap-1 font-bold text-sm  ${selectedClassText}`}
+            className={`h-[45px] w-[230px] hidden group-hover:grid grid-cols-[auto_1fr_auto] absolute  left-[50px]   items-center pl-2 gap-1 font-bold text-sm  ${selectedClassText}`}
           >
             {isChild && <Minus className="h-3 w-3" />}
+            {!isChild && <div className="w-0" />}
             {menu.name}
-          </div>
-          <div
-            className={`w-[35px] flex justify-center items-center  ${selectedClassText}`}
-          >
-            {childState ? (
-              <ChevronUp className="h-4 w-4" />
-            ) : (
-              <ChevronDown className="h-4 w-4" />
-            )}
+            <div
+              className={`w-[35px] flex justify-center items-center  ${selectedClassText}`}
+            >
+              {childState ? (
+                <ChevronUp className="h-4 w-4" />
+              ) : (
+                <ChevronDown className="h-4 w-4" />
+              )}
+            </div>
           </div>
         </li>
         <ul className={`${childClass}`}>
           {childMenus.map((menuItem) => (
-            <MenuItem
+            <HoverMenuItem
               key={menuItem.id}
               menu={menuItem}
               menuList={menuList}
               isChild={true}
+              isRootItem={false}
             />
           ))}
         </ul>
@@ -96,25 +99,19 @@ function MenuItem(props: IProps) {
       onClick={() => {
         handleMenuOpen(menu);
       }}
-      className={`grid grid-cols-[auto_auto_1fr_auto]   h-[45px] w-full group cursor-pointer   ${firstMenuClass}`}
+      className={`grid grid-cols-[auto_auto]   h-[45px] w-full group cursor-pointer   ${firstMenuClass}`}
     >
       <div className="w-[47px] flex justify-center items-center  ">
         {getIconFile(menu)}
       </div>
       <div className={`w-[4px]  ${selectedClassTick}`}>&nbsp;</div>
       <div
-        className={`flex justify-start items-center pl-2 gap-1 font-bold text-sm  ${selectedClassText}`}
+        className={` h-[45px] w-[230px] hidden group-hover:flex absolute  left-[50px] justify-start items-center pl-2 gap-1 font-bold text-sm  ${selectedClassText}`}
       >
-        {isChild && <Minus className="h-3 w-3" />}
         {menu.name}
-      </div>
-      <div
-        className={`w-[35px] flex justify-center items-center  ${selectedClassText}`}
-      >
-        &nbsp;
       </div>
     </li>
   );
 }
 
-export default MenuItem;
+export default HoverMenuItem;

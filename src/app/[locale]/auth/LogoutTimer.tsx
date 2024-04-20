@@ -21,6 +21,7 @@ const LogoutTimer = (props: IProps) => {
       if (!getSessionData) {
         signOut({ redirect: false });
         router.replace("/");
+        router.refresh();
         window.location.reload();
       }
       const interval = setInterval(() => {
@@ -34,6 +35,7 @@ const LogoutTimer = (props: IProps) => {
           sessionStorage.removeItem("xpandioapp");
           signOut({ redirect: false });
           router.replace("/");
+          router.refresh();
         }
       }, 1000);
 

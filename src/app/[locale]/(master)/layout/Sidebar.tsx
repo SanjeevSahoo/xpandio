@@ -5,18 +5,14 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Support from "./Support";
 import TMenu from "@/_common/types/TMenu";
-import { usePathname } from "next/navigation";
 import { DEFAULT_APP } from "@/_common/constants";
 import { useRouter } from "next/navigation";
-import {
-  getAppWiseMenus,
-  getUrlWiseApp,
-} from "@/_common/client-services/access";
+import { getAppWiseMenus } from "@/_common/client-services/access";
 import MenuItem from "./MenuItem";
 import { menuStore } from "./store/menuStore";
+import HoverMenuItem from "./HoverMenuItem";
 
 function Sidebar() {
-  const pathname = usePathname();
   const appDrawerStatus = appStore((state) => state.appDrawerStatus);
   const selectedApp = appStore((state) => state.selectedApp);
   const setSelectedApp = appStore((state) => state.setSelectedApp);
@@ -59,9 +55,26 @@ function Sidebar() {
   const renderMenu = (masId: number) => {
     const currMenuList = menuList.filter((item) => item.mas_id === masId);
     if (currMenuList.length > 0) {
-      return currMenuList.map((item) => (
-        <MenuItem key={item.id} menu={item} menuList={menuList} />
-      ));
+      if (appDrawerStatus.sidebar) {
+        return currMenuList.map((item) => (
+          <MenuItem
+            key={item.id}
+            menu={item}
+            menuList={menuList}
+            isChild={false}
+          />
+        ));
+      } else {
+        return currMenuList.map((item) => (
+          <HoverMenuItem
+            key={item.id}
+            menu={item}
+            menuList={menuList}
+            isChild={false}
+            isRootItem={true}
+          />
+        ));
+      }
     }
   };
 
@@ -91,17 +104,33 @@ function Sidebar() {
           {selectedApp.disp_name}
         </div>
       </div>
-      <div className="relative h-full w-full overflow-y-auto">
-        <div className="grid grid-cols-[auto_1fr] h-full w-full overflow-hidden hover:overflow-auto ">
-          <div className="flex items-center justify-center w-[50px]  bg-primary text-primary-foreground">
-            &nbsp;
+      {appDrawerStatus.sidebar && (
+        <div className="relative h-full w-full overflow-y-auto">
+          <div className="grid grid-cols-[auto_1fr] h-full w-full overflow-hidden hover:overflow-auto ">
+            <div className="flex items-center justify-center w-[50px]  bg-primary text-primary-foreground">
+              &nbsp;
+            </div>
+            <div className={`${drawerSubStatusClass}`}>&nbsp;</div>
           </div>
-          <div className={`${drawerSubStatusClass}`}>&nbsp;</div>
+          <div className="absolute top-0 left-0 h-full w-full overflow-hidden hover:overflow-y-auto  text-primary">
+            {menuList && menuList.length > 0 && renderMenu(menuList[0].mas_id)}
+          </div>
         </div>
-        <div className="absolute top-0 left-0 h-full w-full overflow-hidden hover:overflow-y-auto  text-primary">
-          {menuList && menuList.length > 0 && renderMenu(menuList[0].mas_id)}
+      )}
+      {!appDrawerStatus.sidebar && (
+        <div className="h-full w-full overflow-y-auto">
+          <div className="grid grid-cols-[auto] h-full w-full overflow-hidden hover:overflow-y-auto ">
+            <div className="flex items-center justify-center w-[50px]  bg-primary text-primary-foreground">
+              <div className=" h-full w-full overflow-hidden hover:overflow-y-auto  text-primary">
+                {menuList &&
+                  menuList.length > 0 &&
+                  renderMenu(menuList[0].mas_id)}
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
+
       <div className="h-[45px] grid grid-cols-[auto_1fr] overflow-hidden ">
         <div className="flex items-center justify-center w-[50px]  bg-primary text-primary-foreground   rounded-b-md ">
           <Support />

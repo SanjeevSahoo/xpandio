@@ -18,17 +18,15 @@ export default async function RootLayout({
   return (
     <html suppressHydrationWarning>
       <body>
-        <Suspense>
-          <NextThemesProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem={false}
-            disableTransitionOnChange
-            themes={[...THEME_LIST]}
-          >
-            {children}
-          </NextThemesProvider>
-        </Suspense>
+        <NextThemesProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          disableTransitionOnChange
+          themes={[...THEME_LIST]}
+        >
+          {children}
+        </NextThemesProvider>
       </body>
     </html>
   );

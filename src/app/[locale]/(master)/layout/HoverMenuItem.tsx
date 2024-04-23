@@ -45,6 +45,41 @@ function HoverMenuItem(props: IProps) {
     return <CurrIcon className="h-5 w-5 text-primary-foreground" />;
   };
 
+  if (childMenus.length > 0 && level > 0) {
+    return (
+      <>
+        <li
+          className={`grid ${groupName} grid-cols-[auto_auto_1fr] h-[45px] w-[280px] cursor-pointer bg-primary text-primary-foreground   ${firstMenuClass}`}
+        >
+          <div className="w-[47px] flex justify-center items-center  ">
+            {getIconFile(menu)}
+          </div>
+          <div className={`w-[2px] ${groupNameHoverTick}`}>&nbsp;</div>
+          <div
+            className={`h-[45px] w-[230px]  grid grid-cols-[1fr_auto] absolute  left-[50px] bg-primary text-primary-foreground    items-center pl-2 gap-1 font-bold text-sm `}
+          >
+            {menu.name}
+            <div className={`w-[35px] flex justify-center items-center`}>
+              <ChevronRight className="h-4 w-4" />
+            </div>
+          </div>
+          <ul
+            className={`absolute hidden left-[280px]  ${groupNameHoverBlock}`}
+          >
+            {childMenus.map((menuItem) => (
+              <HoverMenuItem
+                key={menuItem.id}
+                menu={menuItem}
+                menuList={menuList}
+                level={level + 1}
+              />
+            ))}
+          </ul>
+        </li>
+      </>
+    );
+  }
+
   if (childMenus.length > 0) {
     return (
       <>
@@ -64,7 +99,7 @@ function HoverMenuItem(props: IProps) {
             </div>
           </div>
           <ul
-            className={`absolute hidden left-[282px]  ${groupNameHoverBlock}`}
+            className={`absolute hidden left-[280px]  ${groupNameHoverBlock}`}
           >
             {childMenus.map((menuItem) => (
               <HoverMenuItem
@@ -77,6 +112,28 @@ function HoverMenuItem(props: IProps) {
           </ul>
         </li>
       </>
+    );
+  }
+
+  if (level > 0) {
+    return (
+      <li
+        onClick={() => {
+          handleMenuOpen(menu);
+        }}
+        className={`grid ${groupName} grid-cols-[auto_auto_1fr_auto]    h-[45px] w-[280px] group cursor-pointer bg-primary text-primary-foreground   ${firstMenuClass}`}
+      >
+        <div className="w-[47px] flex justify-center items-center  ">
+          {getIconFile(menu)}
+        </div>
+        <div className={`w-[2px] ${groupNameHoverTick}`}>&nbsp;</div>
+        <div
+          className={` h-[45px]  grid grid-cols-[1fr_auto]  justify-start bg-primary text-primary-foreground  items-center pl-2 gap-1 font-bold text-sm `}
+        >
+          {menu.name}
+          <div className={`w-[35px]`}>&nbsp;</div>
+        </div>
+      </li>
     );
   }
 

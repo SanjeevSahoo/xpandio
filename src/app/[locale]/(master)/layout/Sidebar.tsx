@@ -66,7 +66,12 @@ function Sidebar() {
         ));
       } else {
         return currMenuList.map((item) => (
-          <HoverMenuItem key={item.id} menu={item} menuList={menuList} />
+          <HoverMenuItem
+            key={item.id}
+            menu={item}
+            menuList={menuList}
+            level={0}
+          />
         ));
       }
     }

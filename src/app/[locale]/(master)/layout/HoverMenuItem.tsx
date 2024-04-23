@@ -10,15 +10,24 @@ import { MENU_ICONS } from "./constant";
 interface IProps {
   menu: TMenu;
   menuList: TMenu[];
+  level: number;
 }
 
 function HoverMenuItem(props: IProps) {
-  const { menu, menuList } = props;
+  const { menu, menuList, level } = props;
   const router = useRouter();
   const setSelectedMenu = menuStore((state) => state.setSelectedMenu);
   const childMenus = menuList.filter((item) => item.mas_id === menu.id);
 
   const firstMenuClass = menu.id === menuList[0].id ? "" : "";
+  const groupName = level === 0 ? " group/0" : "group/1";
+  const groupNameHoverTick =
+    level === 0 ? " group-hover/0:bg-card " : "group-hover/1:bg-card ";
+  const groupNameHoverGrid =
+    level === 0 ? " group-hover/0:grid " : "group-hover/1:grid ";
+
+  const groupNameHoverBlock =
+    level === 0 ? " group-hover/0:block " : "group-hover/1:block ";
 
   const handleMenuOpen = (menu: TMenu) => {
     setSelectedMenu(menu);
@@ -40,26 +49,29 @@ function HoverMenuItem(props: IProps) {
     return (
       <>
         <li
-          className={`grid group grid-cols-[auto_auto_1fr_auto] h-[45px] w-[280px] cursor-pointer bg-primary text-primary-foreground   ${firstMenuClass}`}
+          className={`grid ${groupName} grid-cols-[auto_auto_1fr] h-[45px] w-[280px] cursor-pointer bg-primary text-primary-foreground   ${firstMenuClass}`}
         >
           <div className="w-[47px] flex justify-center items-center  ">
             {getIconFile(menu)}
           </div>
-          <div className={`w-[2px] group-hover:bg-card`}>&nbsp;</div>
+          <div className={`w-[2px] ${groupNameHoverTick}`}>&nbsp;</div>
           <div
-            className={`h-[45px] w-[230px] hidden group-hover:grid grid-cols-[1fr_auto] absolute  left-[50px] bg-primary text-primary-foreground    items-center pl-2 gap-1 font-bold text-sm `}
+            className={`h-[45px] w-[230px] hidden ${groupNameHoverGrid} grid-cols-[1fr_auto] absolute  left-[50px] bg-primary text-primary-foreground    items-center pl-2 gap-1 font-bold text-sm `}
           >
             {menu.name}
             <div className={`w-[35px] flex justify-center items-center`}>
               <ChevronRight className="h-4 w-4" />
             </div>
           </div>
-          <ul className={`absolute hidden left-[282px]  group-hover:block `}>
+          <ul
+            className={`absolute hidden left-[282px]  ${groupNameHoverBlock}`}
+          >
             {childMenus.map((menuItem) => (
               <HoverMenuItem
                 key={menuItem.id}
                 menu={menuItem}
                 menuList={menuList}
+                level={level + 1}
               />
             ))}
           </ul>
@@ -73,18 +85,18 @@ function HoverMenuItem(props: IProps) {
       onClick={() => {
         handleMenuOpen(menu);
       }}
-      className={`grid grid-cols-[auto_auto_1fr_auto]   h-[45px] w-[280px] group cursor-pointer bg-primary text-primary-foreground   ${firstMenuClass}`}
+      className={`grid ${groupName} grid-cols-[auto_auto_1fr_auto]   h-[45px] w-[280px] group cursor-pointer bg-primary text-primary-foreground   ${firstMenuClass}`}
     >
       <div className="w-[47px] flex justify-center items-center  ">
         {getIconFile(menu)}
       </div>
-      <div className={`w-[2px] group-hover:bg-card`}>&nbsp;</div>
+      <div className={`w-[2px] ${groupNameHoverTick}`}>&nbsp;</div>
       <div
-        className={` h-[45px] w-[230px] hidden group-hover:flex absolute  left-[50px] justify-start bg-primary text-primary-foreground  items-center pl-2 gap-1 font-bold text-sm `}
+        className={` h-[45px] w-[230px] hidden ${groupNameHoverGrid} grid-cols-[1fr_auto] absolute  left-[50px] justify-start bg-primary text-primary-foreground  items-center pl-2 gap-1 font-bold text-sm `}
       >
         {menu.name}
+        <div className={`w-[35px]`}>&nbsp;</div>
       </div>
-      <div className={`w-[35px]`}>&nbsp;</div>
     </li>
   );
 }

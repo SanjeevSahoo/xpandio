@@ -1,5 +1,6 @@
 import AuthService from "@/_common/db/services/auth";
 import { unstable_cache } from "next/cache";
+import React from "react";
 
 const getCachedUser = unstable_cache(
   async (id) => AuthService.getUserAllApps(id),
@@ -8,11 +9,8 @@ const getCachedUser = unstable_cache(
     revalidate: 20,
   }
 );
-export async function GET(
-  request: Request,
-  { params }: { params: { slug: string[] } }
-) {
-  const slug = params.slug;
+
+async function page() {
   const appResult = await getCachedUser(2);
   const { data: appList } = appResult;
   if (!appResult || appResult.error) {
@@ -27,5 +25,9 @@ export async function GET(
       { status: 500 }
     );
   }
-  return Response.json([...appList.map((item) => item.disp_name)]);
+  return (
+    <div>{JSON.stringify([...appList.map((item) => item.disp_name)])}</div>
+  );
 }
+
+export default page;

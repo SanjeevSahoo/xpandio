@@ -2,10 +2,10 @@ import AuthService from "@/_common/db/services/auth";
 import { unstable_cache } from "next/cache";
 
 const getCachedUser = unstable_cache(
-  async (id) => AuthService.getUserAllApps(id),
+  async (id: number) => AuthService.getUserAllApps(id),
   ["my-app-user"],
   {
-    revalidate: 20,
+    revalidate: 60,
   }
 );
 export async function GET(
@@ -13,7 +13,7 @@ export async function GET(
   { params }: { params: { slug: string[] } }
 ) {
   const slug = params.slug;
-  const appResult = await getCachedUser(2);
+  const appResult = await getCachedUser(+slug[0]);
   const { data: appList } = appResult;
   if (!appResult || appResult.error) {
     return Response.json(

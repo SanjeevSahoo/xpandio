@@ -3,15 +3,16 @@ import { unstable_cache } from "next/cache";
 import React from "react";
 
 const getCachedUser = unstable_cache(
-  async (id) => AuthService.getUserAllApps(id),
+  async (id: number) => AuthService.getUserAllApps(id),
   ["my-app-user"],
   {
-    revalidate: 20,
+    revalidate: 60,
   }
 );
 
-async function page() {
-  const appResult = await getCachedUser(2);
+async function page({ params }: { params: { slug: string[] } }) {
+  const slug = params.slug;
+  const appResult = await getCachedUser(+slug[0]);
   const { data: appList } = appResult;
   if (!appResult || appResult.error) {
     return Response.json(

@@ -1,6 +1,16 @@
 import AuthService from "@/_common/db/services/auth";
 import { unstable_cache } from "next/cache";
 
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  const slugs = ["1", "3"];
+
+  return slugs.map((item) => ({
+    slug: [item],
+  }));
+}
+
 const getCachedUser = unstable_cache(
   async (id: number) => AuthService.getUserAllApps(id),
   ["my-app-user"],

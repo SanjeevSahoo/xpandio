@@ -13,6 +13,7 @@ import { menuStore } from "./store/menuStore";
 import HoverMenuItem from "./HoverMenuItem";
 
 function Sidebar() {
+  console.log("Sidebar");
   const appDrawerStatus = appStore((state) => state.appDrawerStatus);
   const selectedApp = appStore((state) => state.selectedApp);
   const setSelectedApp = appStore((state) => state.setSelectedApp);
@@ -42,6 +43,7 @@ function Sidebar() {
   // }, [pathname, selectedApp]);
 
   useEffect(() => {
+    console.log("Sidebar Rendered");
     getAppWiseMenus(selectedApp.id).then((res) => {
       if (!res.data.error) {
         setMenuList(res.data.data);

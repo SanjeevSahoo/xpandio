@@ -21,7 +21,10 @@ export async function middleware(request: NextRequest) {
     if (!isAuthenticated && !isPublicRoute)
       return Response.redirect(new URL(ROOT, request.nextUrl));
 
-    return i18nRouter(request, i18nConfig);
+    // localization not for Api
+    if (!request.nextUrl.pathname.startsWith("/api/")) {
+      return i18nRouter(request, i18nConfig);
+    }
   } catch (error) {
     console.error("Middleware Error:", error);
     return new NextResponse("Internal Server Error", { status: 500 });
@@ -29,5 +32,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|images|favicon.ico).*)"],
+  matcher: ["/((?!api/auth|_next/static|_next/image|images|favicon.ico).*)"],
 };

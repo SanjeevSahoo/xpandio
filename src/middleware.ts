@@ -21,10 +21,7 @@ export async function middleware(request: NextRequest) {
     if (!isAuthenticated && !isPublicRoute)
       return Response.redirect(new URL(ROOT, request.nextUrl));
 
-    // localization not for Api
-    if (!request.nextUrl.pathname.startsWith("/api/")) {
-      return i18nRouter(request, i18nConfig);
-    }
+    return i18nRouter(request, i18nConfig);
   } catch (error) {
     console.error("Middleware Error:", error);
     return new NextResponse("Internal Server Error", { status: 500 });

@@ -6,10 +6,17 @@ const DB_CONFIG = {
   connectString: process.env.BASE_ORACLEDB_URL,
 };
 
+const DB_CONFIG_OHP = {
+  user: process.env.BASE_ORACLEDB_OHP_USER,
+  password: process.env.BASE_ORACLEDB_OHP_PASSWORD,
+  connectString: process.env.BASE_ORACLEDB_OHP_URL,
+};
+
 function simpleQuery(
   statement: string,
   binds: BindParameters = [],
-  opts: ExecuteOptions = {}
+  opts: ExecuteOptions = {},
+  db: string = "frm"
 ) {
   return new Promise(async (resolve, reject) => {
     oracledb.initOracleClient();
@@ -18,8 +25,14 @@ function simpleQuery(
     opts.outFormat = oracledb.OUT_FORMAT_OBJECT;
     opts.autoCommit = true;
 
+    let config = { ...DB_CONFIG };
+    if (db === "health") {
+      config = { ...DB_CONFIG_OHP };
+      config.password += "#";
+    }
+
     try {
-      conn = await oracledb.getConnection(DB_CONFIG);
+      conn = await oracledb.getConnection(config);
       const result = await conn.execute(statement, binds, opts);
       resolve(result);
     } catch (err) {

@@ -7,7 +7,6 @@ export default async function MasterLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log("Master Layout");
   return (
     <div className="grid grid-rows-[1fr] h-screen w-screen bg-background text-foreground relative overflow-hidden">
       <div className="grid grid-cols-[auto_1fr] w-full h-full overflow-auto ">

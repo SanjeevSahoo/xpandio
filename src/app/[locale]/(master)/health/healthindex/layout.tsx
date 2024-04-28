@@ -7,6 +7,7 @@ const getCachedLocations = unstable_cache(
   ["health-locations"],
   {
     revalidate: 60 * 60 * 24 * 7,
+    tags: ["health-locations"],
   }
 );
 

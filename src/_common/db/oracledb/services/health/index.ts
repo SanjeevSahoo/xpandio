@@ -3,6 +3,7 @@ import TLocationQueryData from "@/_common/types/health/TLocationQueryData";
 import THealthLocation from "@/_common/types/health/THealthLocation";
 import THealthIndexQueryData from "@/_common/types/health/THealthIndexQueryData";
 import THealthIndexReport from "@/_common/types/health/THealthIndexReport";
+import removeJSONNull from "@/_common/utils/json-util";
 
 const getLocations = async (): Promise<TLocationQueryData> => {
   let retVal: TLocationQueryData = {
@@ -66,18 +67,18 @@ const getHealthIndexReport = async (
   };
 
   /*
-  , a.tst_cycle
-            , a.tst_year
-            , b.height
-            , b.gender
+  
+           
+         
+           
             , b.mobile
-            , a.phs_weight
-            , a.phs_bmi
+            ,
+            , 
             , a.phs_bp
             , a.phs_bpd
             , a.phs_bps1
             , a.phs_bpd1
-            , a.phs_bps2
+            , 
             , a.phs_bpd2
             , a.lab_sgr_rbs
             , CASE WHEN a.phs_conc_count='0' THEN 'N' ELSE 'Y' END as conc_count
@@ -118,8 +119,7 @@ const getHealthIndexReport = async (
             , a.lab_dlc_l
             , a.lab_dlc_e
             , a.lab_dlc_m
-            , FLOOR(TO_NUMBER(TRUNC(SYSDATE)-TRUNC(b.dob))/365.25) AS age 
-            , c.tol_level_name
+          
             , b.critical_flg
             , CASE WHEN a.phs_addict LIKE '%\"9\"%' THEN 1 ELSE 0 END Score_Addict
             , CASE WHEN NVL(a.phs_bmi,0) < 25 THEN 2 WHEN NVL(a.phs_bmi,0) >= 25 AND NVL(a.phs_bmi,0) < 30 THEN 1 ELSE 0 END Score_BMI
@@ -144,11 +144,22 @@ const getHealthIndexReport = async (
   try {
     let resultHealthIndexReport: any = await simpleQuery(
       ` SELECT 
-              NVL(TO_CHAR(a.test_ts,'DD-Mon-YYYY'),'') "log_test_date"
-            , NVL(TO_CHAR(a.phs_dt,'DD-Mon-YYYY'),'') "test_date"
-            , a.emp_id "emp_id"
-            , b.emp_name "emp_name"
-            , b.ticket_no "ticket_no"            
+            NVL(b.ticket_no,'') "ticket_no",
+            NVL(b.emp_name,'') "emp_name",
+            NVL(TO_CHAR(a.phs_dt,'DD-Mon-YYYY'),'') "test_date",
+            NVL(a.tst_year,0) "tst_year",
+            NVL(a.tst_cycle,0) "tst_cycle",
+            NVL(b.gender,'') "gender",
+            NVL(FLOOR(TO_NUMBER(TRUNC(SYSDATE)-TRUNC(b.dob))/365.25),0)  "age",
+            NVL(b.height,0) "height",
+            NVL(a.phs_weight,0) "phs_weight",
+            NVL(c.tol_level_name,'') "div_name",
+            NVL(a.phs_bmi,0) "phs_bmi",        
+            NVL(a.phs_bp,'') "phs_bp",          
+            NVL(a.phs_bps1,'') "phs_bps1",
+            NVL(a.phs_bps2,'') "phs_bps2",
+            NVL(TO_CHAR(a.test_ts,'DD-Mon-YYYY'),'') "log_test_date",
+            NVL(a.emp_id,0) "emp_id"
         FROM 
             mcs_emp_tests a 
             LEFT JOIN mcs_organisation_levels c ON a.div_id = c.tol_level_id 
@@ -175,13 +186,14 @@ const getHealthIndexReport = async (
       retVal.error = true;
       retVal.errorMessage = resultHealthIndexReport.errorMessage;
     } else {
-      const currData: THealthIndexReport[] = resultHealthIndexReport.rows;
+      const currData: THealthIndexReport[] = removeJSONNull(
+        resultHealthIndexReport.rows
+      );
 
       if (currData.length > 0) {
         retVal.data = [...currData];
       } else {
-        retVal.error = true;
-        retVal.errorMessage = "Health Index Report not found";
+        retVal.data = [];
       }
     }
   } catch (err) {

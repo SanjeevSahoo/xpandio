@@ -57,9 +57,6 @@ async function page({ params }: { params: { slug: string[] } }) {
   if (!reportResult || reportResult.error) {
     return <div>Error Occured retreiving Health Index Report</div>;
   }
-  if (healthIndexData.length <= 0) {
-    return <div>No Data Found</div>;
-  }
 
   return <DataTable columns={columns} data={healthIndexData} />;
 }

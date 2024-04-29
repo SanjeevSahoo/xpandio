@@ -2,12 +2,12 @@ type THealthIndexReport = {
   ticket_no: string;
   emp_name: string;
   test_date: string;
-  tst_year: number;
-  tst_cycle: number;
+  tst_year: string;
+  tst_cycle: string;
   gender: string;
-  age: number;
-  height: number;
-  phs_weight: number;
+  age: string;
+  height: string;
+  phs_weight: string;
   div_name: string;
   phs_bmi: string;
   phs_bp: string;

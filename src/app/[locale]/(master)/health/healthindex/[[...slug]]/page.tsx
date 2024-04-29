@@ -22,12 +22,10 @@ export async function generateStaticParams() {
 
   for (let i = 2015; i <= currFYear; i += 1) {
     for (let j = 0; j < locations.length; j += 1) {
-      if (i !== 2023) {
-        slugList.push({
-          yearNo: i.toString(),
-          locnId: locations[j].id.toString(),
-        });
-      }
+      slugList.push({
+        yearNo: i.toString(),
+        locnId: locations[j].id.toString(),
+      });
     }
   }
 
@@ -45,6 +43,7 @@ async function page({ params }: { params: { slug: string[] } }) {
       </div>
     );
   }
+
   const getCachedHealthIndexReport = unstable_cache(
     async () => getHealthIndexReport(+slug[0], +slug[1]),
     ["healthindex-report", slug[0], slug[1]],
@@ -56,10 +55,10 @@ async function page({ params }: { params: { slug: string[] } }) {
   const reportResult = await getCachedHealthIndexReport();
   const { data: healthIndexData } = reportResult;
   if (!reportResult || reportResult.error) {
-    return Response.json(
-      { error: "Error Occured retreiving Health Index Report" },
-      { status: 500 }
-    );
+    return <div>Error Occured retreiving Health Index Report</div>;
+  }
+  if (healthIndexData.length <= 0) {
+    return <div>No Data Found</div>;
   }
 
   return <DataTable columns={columns} data={healthIndexData} />;

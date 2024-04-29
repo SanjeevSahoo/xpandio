@@ -3,7 +3,7 @@
 import { Button } from "@/_common/components/ui/button";
 import THealthIndexReport from "@/_common/types/health/THealthIndexReport";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { ArrowUpDown } from "lucide-react";
 
 export const columns: ColumnDef<THealthIndexReport>[] = [
   {

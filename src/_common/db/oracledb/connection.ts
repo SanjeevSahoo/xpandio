@@ -1,4 +1,8 @@
-import oracledb, { BindParameters, ExecuteOptions } from "oracledb";
+import oracledb, {
+  BindParameters,
+  ExecuteOptions,
+  InitialiseOptions,
+} from "oracledb";
 
 const DB_CONFIG = {
   user: process.env.BASE_ORACLEDB_USER,
@@ -19,17 +23,17 @@ function simpleQuery(
   db: string = "frm"
 ) {
   return new Promise(async (resolve, reject) => {
-    oracledb.initOracleClient();
-    let conn;
-
-    opts.outFormat = oracledb.OUT_FORMAT_OBJECT;
-    opts.autoCommit = true;
-
     let config = { ...DB_CONFIG };
     if (db === "health") {
       config = { ...DB_CONFIG_OHP };
       config.password += "#";
     }
+
+    await oracledb.initOracleClient();
+    let conn;
+
+    opts.outFormat = oracledb.OUT_FORMAT_OBJECT;
+    opts.autoCommit = true;
 
     try {
       conn = await oracledb.getConnection(config);

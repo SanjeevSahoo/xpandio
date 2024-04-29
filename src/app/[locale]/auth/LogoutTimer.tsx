@@ -17,13 +17,13 @@ const LogoutTimer = (props: IProps) => {
 
   useEffect(() => {
     if (session) {
-      const getSessionData = sessionStorage.getItem("xpandioapp");
-      if (!getSessionData) {
-        signOut({ redirect: false });
-        router.replace("/");
-        router.refresh();
-        window.location.reload();
-      }
+      // const getSessionData = sessionStorage.getItem("xpandioapp");
+      // if (!getSessionData) {
+      //   signOut({ redirect: false });
+      //   router.replace("/");
+      //   router.refresh();
+      //   window.location.reload();
+      // }
       const interval = setInterval(() => {
         const time = Date.parse(session.expires) - Date.now();
 

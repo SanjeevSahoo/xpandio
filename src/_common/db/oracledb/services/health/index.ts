@@ -177,7 +177,7 @@ const getHealthIndexReport = async (
     ).catch((err) => {
       console.log(err);
       return {
-        errorMessage: "DB Error",
+        errorMessage: `DB Error`,
         errorTransKey: "api_res_db_error",
       };
     });

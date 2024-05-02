@@ -1,17 +1,14 @@
 "use client";
 
 import Logo from "./(master)/layout/Logo";
-import LoginForm from "@/app/[locale]/auth/LoginForm";
+import LoginForm from "@/app/auth/LoginForm";
 import ThemeToggler from "@/_common/components/ThemeToggler";
 import LoginSideInfo from "./auth/LoginSideInfo";
-import { useTranslation } from "react-i18next";
 import Copyright from "./(master)/layout/Copyright";
-import LanguageChanger from "@/_common/components/LanguageChanger";
 import { appStore } from "@/_common/store/appStore";
 import { useEffect } from "react";
 
 const Root = () => {
-  const { t } = useTranslation(["common"]);
   const resetAppStore = appStore((state) => state.resetAppStore);
 
   useEffect(() => {
@@ -28,7 +25,7 @@ const Root = () => {
           <div className="p-14">
             <div className=" flex flex-col justify-center items-center">
               <p className="font-semibold text-xl p-2 text-primary">
-                {t("headings.welcome_back")}
+                Welcome Back
               </p>
               <p className="font-normal text-sm p-2 text-muted-foreground">
                 Please login using the information below
@@ -43,7 +40,6 @@ const Root = () => {
         <div className="lg:relative w-full h-full flex justify-center items-center px-4 bg-secondary text-secondary-foreground">
           <LoginSideInfo />
           <div className="absolute top-1 right-1 flex justify-between items-center gap-2">
-            <LanguageChanger />
             <ThemeToggler />
           </div>
         </div>

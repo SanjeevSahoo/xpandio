@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { auth } from "@/app/[locale]/auth";
+import { auth } from "@/app/auth";
 
 async function ProfileMenu() {
   const session = await auth();

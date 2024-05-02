@@ -1,10 +1,8 @@
 import NextAuth from "next-auth";
 
 import { DEFAULT_REDIRECT, PUBLIC_ROUTES, ROOT } from "@/_common/constants";
-import { authConfig } from "./app/[locale]/auth/auth.config";
+import { authConfig } from "./app/auth/auth.config";
 import { NextRequest, NextResponse } from "next/server";
-import { i18nRouter } from "next-i18n-router";
-import i18nConfig from "./app/localization/i18nConfig";
 
 const { auth } = NextAuth(authConfig);
 
@@ -20,8 +18,6 @@ export async function middleware(request: NextRequest) {
 
     if (!isAuthenticated && !isPublicRoute)
       return Response.redirect(new URL(ROOT, request.nextUrl));
-
-    return i18nRouter(request, i18nConfig);
   } catch (error) {
     console.error("Middleware Error:", error);
     return new NextResponse("Internal Server Error", { status: 500 });

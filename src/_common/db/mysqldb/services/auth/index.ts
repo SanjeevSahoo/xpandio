@@ -1,6 +1,6 @@
 import { simpleQuery } from "@/_common/db/mysqldb/connection";
 import TApp from "@/_common/types/TApp";
-import TAuthUser from "@/app/[locale]/auth/types/TAuthUser";
+import TAuthUser from "@/app/auth/types/TAuthUser";
 
 type TAuthQueryData = {
   error: boolean;

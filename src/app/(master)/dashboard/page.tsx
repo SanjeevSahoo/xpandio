@@ -1,7 +1,7 @@
 import React from "react";
 
 import AuthService from "@/_common/db/services/auth";
-import { auth } from "@/app/[locale]/auth";
+import { auth } from "@/app/auth";
 import AppLink from "../layout/AppLink";
 import ClientSessionTest from "./ClentSessionTest";
 

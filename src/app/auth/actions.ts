@@ -1,7 +1,7 @@
 "use server";
 
 import { AuthError } from "next-auth";
-import { signIn, signOut } from "@/app/[locale]/auth";
+import { signIn, signOut } from "@/app/auth";
 import { decryptData } from "@/_common/utils/crypto";
 
 const defaultValues = {

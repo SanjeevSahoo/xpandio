@@ -4,7 +4,7 @@ import { NextThemesProvider } from "@/_common/components/NextThemesProvider";
 import "@/app/globals.css";
 import { THEME_LIST } from "@/_common/constants";
 import { Suspense } from "react";
-import { auth } from "./[locale]/auth";
+import { auth } from "./auth";
 import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {

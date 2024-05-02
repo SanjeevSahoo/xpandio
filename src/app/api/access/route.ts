@@ -1,5 +1,5 @@
 import AccessService from "@/_common/db/services/access";
-import { auth } from "@/app/[locale]/auth";
+import { auth } from "@/app/auth";
 
 export async function POST(request: Request) {
   const session = await auth();

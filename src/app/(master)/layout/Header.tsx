@@ -6,7 +6,7 @@ import ThemeToggler from "@/_common/components/ThemeToggler";
 import ProfileMenu from "./ProfileMenu";
 import SettingsToggler from "./SettingsToggler";
 import LogoutTimer from "../../auth/LogoutTimer";
-import { auth } from "@/app/[locale]/auth";
+import { auth } from "@/app/auth";
 
 async function Header() {
   const session = await auth();

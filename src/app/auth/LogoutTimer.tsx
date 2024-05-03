@@ -1,17 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Session } from "next-auth";
 
-interface IProps {
-  session: Session | null;
-}
-
-const LogoutTimer = (props: IProps) => {
-  const { session } = props;
-  // const { data: session, status } = useSession();
+const LogoutTimer = () => {
+  const { data: session, status } = useSession();
   const [timer, setTimer] = useState({ minutes: 0, seconds: 0 });
   const router = useRouter();
 

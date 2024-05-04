@@ -2,7 +2,7 @@
 
 import { appStore } from "@/_common/store/appStore";
 import React from "react";
-import LogoutButton from "../../auth/LogoutButton";
+import LogoutButton from "../auth/LogoutButton";
 
 function Settings() {
   const appDrawerStatus = appStore((state) => state.appDrawerStatus);

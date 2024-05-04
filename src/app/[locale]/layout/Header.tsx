@@ -5,9 +5,12 @@ import NotificationToggler from "./NotificationToggler";
 import ThemeToggler from "@/_common/components/ThemeToggler";
 import ProfileMenu from "./ProfileMenu";
 import SettingsToggler from "./SettingsToggler";
-import LogoutTimer from "../../auth/LogoutTimer";
+import LogoutTimer from "../auth/LogoutTimer";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "../auth";
 
 async function Header() {
+  const session = await auth();
   return (
     <div className="flex justify-between items-center bg-card shadow-md border-[1px]">
       <div className="flex items-center justify-start gap-2 w-[200px] px-1">
@@ -15,7 +18,9 @@ async function Header() {
         <SelectedMenuTitle />
       </div>
       <div className="flex items-center justify-between gap-2 ">
-        <LogoutTimer />
+        <SessionProvider session={session}>
+          <LogoutTimer />
+        </SessionProvider>
         <NotificationToggler />
         <ThemeToggler />
         <SettingsToggler>

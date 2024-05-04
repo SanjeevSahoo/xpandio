@@ -19,7 +19,7 @@ export async function login(prevState: any, formData: FormData) {
     await signIn("credentials", {
       username: decDomainId,
       password: decPassword,
-      redirectTo: "/dashboard",
+      redirectTo: "/master",
     });
 
     return {

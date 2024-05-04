@@ -361,7 +361,7 @@ BEGIN
 END;
 
 
-insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('dashboard','Active', 'Dashboard', null, 1, 'Relative', '/dashboard', 0, null, SYSDATE);
+insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('dashboard','Active', 'Dashboard', null, 1, 'Relative', '/master', 0, null, SYSDATE);
 insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('settings','Active', 'Administration', null, 2, 'Parent',null, 0, null, SYSDATE);
 
 insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('roles','Active', 'Roles', 2, 1, 'Relative','/roles', 0, null, SYSDATE);

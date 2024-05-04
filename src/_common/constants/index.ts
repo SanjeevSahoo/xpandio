@@ -15,7 +15,7 @@ const LDAP_HOSTS_TML = LDAP_HOSTS.split(",").map((item) => ({
 
 const ROOT = "/";
 const PUBLIC_ROUTES = ["/"];
-const DEFAULT_REDIRECT = "/dashboard";
+const DEFAULT_REDIRECT = "/master";
 
 const THEME_LIST = ["light", "dark"];
 
@@ -38,7 +38,7 @@ const DEFAULT_APP: TApp = {
   team_id: 0,
   project_admins: "[]",
   status: "Active",
-  base_url: "/dashboard",
+  base_url: "/master",
 };
 export {
   BASE_DB_TYPE,

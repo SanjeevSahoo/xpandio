@@ -1,14 +1,14 @@
 "use client";
 
-import Logo from "./(master)/layout/Logo";
 import LoginForm from "@/app/[locale]/auth/LoginForm";
 import ThemeToggler from "@/_common/components/ThemeToggler";
 import LoginSideInfo from "./auth/LoginSideInfo";
 import { useTranslation } from "react-i18next";
-import Copyright from "./(master)/layout/Copyright";
 import LanguageChanger from "@/_common/components/LanguageChanger";
 import { appStore } from "@/_common/store/appStore";
 import { useEffect } from "react";
+import Logo from "./layout/Logo";
+import Copyright from "./layout/Copyright";
 
 const Root = () => {
   const { t } = useTranslation(["common"]);

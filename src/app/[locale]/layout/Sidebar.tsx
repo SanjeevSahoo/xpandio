@@ -10,7 +10,7 @@ import MenuItem from "./MenuItem";
 import { menuStore } from "./store/menuStore";
 import HoverMenuItem from "./HoverMenuItem";
 import TApp from "@/_common/types/TApp";
-import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 interface IProps {
   app: TApp;
@@ -18,6 +18,8 @@ interface IProps {
 }
 function Sidebar(props: IProps) {
   const { app, menuList } = props;
+  const router = useRouter();
+  const pathname = usePathname();
   const appDrawerStatus = appStore((state) => state.appDrawerStatus);
   const setSelectedMenu = menuStore((state) => state.setSelectedMenu);
 
@@ -29,7 +31,9 @@ function Sidebar(props: IProps) {
 
   useEffect(() => {
     if (menuList.length > 0) {
-      setSelectedMenu(menuList[0]);
+      if (pathname === app.base_url) {
+        setSelectedMenu(menuList[0]);
+      }
     }
   }, [menuList]);
   const renderMenu = (masId: number) => {
@@ -57,14 +61,21 @@ function Sidebar(props: IProps) {
     }
   };
 
+  const handleHome = () => {
+    router.replace(DEFAULT_APP.base_url);
+    if (pathname.startsWith(DEFAULT_APP.base_url)) {
+      router.refresh();
+    }
+  };
+
   return (
     <div
       className={`duration-500 bg-accent text-accent-foreground  h-full z-10 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] grid grid-rows-[auto_1fr_auto] overflow-hidden border-[1px]  ${drawerStatusClass}`}
     >
       <div className="h-[60px] grid grid-cols-[auto_1fr] w-full overflow-hidden">
-        <Link
+        <div
+          onClick={handleHome}
           className="flex items-center justify-center w-[50px]  bg-primary text-primary-foreground   rounded-t-md cursor-pointer"
-          href={DEFAULT_APP.base_url}
         >
           <Image
             src={"/images/logo/xpandio_logo.png"}
@@ -72,7 +83,7 @@ function Sidebar(props: IProps) {
             width="38"
             height="38"
           />
-        </Link>
+        </div>
         <div
           className={`uppercase text-lg font-bold text-center flex justify-center items-center   ${drawerSubStatusClass}`}
         >

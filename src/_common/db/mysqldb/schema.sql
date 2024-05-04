@@ -225,10 +225,10 @@ create table t_exp_menus
 insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('dashboard','Active', 'Dashboard', null, 1, 'Relative', '/master', 0, null, NOW());
 insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('settings','Active', 'Administration', null, 2, 'Parent',null, 0, null, NOW());
 
-insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('roles','Active', 'Roles', 2, 1, 'Relative','/roles', 0, null, NOW());
-insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('apps','Active', 'Apps', 2, 2, 'Relative','/apps', 0, null, NOW());
-insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('menus','Active', 'Menus', 2, 3, 'Relative','/menus', 0, null, NOW());
-insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('users','Active', 'Users', 2, 4, 'Relative','/users', 0, null, NOW());
+insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('roles','Active', 'Roles', 2, 1, 'Relative','/master/roles', 0, null, NOW());
+insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('apps','Active', 'Apps', 2, 2, 'Relative','/master/apps', 0, null, NOW());
+insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('menus','Active', 'Menus', 2, 3, 'Relative','/master/menus', 0, null, NOW());
+insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('users','Active', 'Users', 2, 4, 'Relative','/master/users', 0, null, NOW());
 
 insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('dashboard','Active', 'Dashboard', null, 1, 'Relative','/health', 1, null, NOW());
 insert into t_exp_menus (menu_icon, status,name, mas_id, sr_no, menu_type, menu_url, project_id, module_id, crt_date) values ('employee','Active', 'Employee Search', null, 2, 'Relative','/health/empsearch', 1, null, NOW());

@@ -2,10 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import TApp from "@/_common/types/TApp";
-// import { useRouter } from "next/navigation";
-// import { appStore } from "@/_common/store/appStore";
 import Link from "next/link";
+import TApp from "@/_common/types/TApp";
 
 interface IProps {
   app: TApp;
@@ -13,13 +11,6 @@ interface IProps {
 
 function AppLink(props: IProps) {
   const { app } = props;
-  // const router = useRouter();
-  // const setSelectedApp = appStore((state) => state.setSelectedApp);
-
-  // const handleAppSelection = () => {
-  //   setSelectedApp(app);
-  //   router.replace(app.base_url);
-  // };
 
   return (
     <Link

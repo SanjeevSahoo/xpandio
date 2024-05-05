@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "A Portal for accessing various next gen apps",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

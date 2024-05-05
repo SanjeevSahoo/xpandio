@@ -4,19 +4,9 @@ import ldap from "ldapjs";
 
 import { LDAP_HOSTS, LDAP_HOSTS_TML } from "@/_common/constants";
 import TAuthUser from "@/app/[locale]/auth/types/TAuthUser";
-import TApp from "@/_common/types/TApp";
-
-type TAuthQueryData = {
-  error: boolean;
-  errorMessage: string;
-  data: TAuthUser;
-};
-
-type TAppsQueryData = {
-  error: boolean;
-  errorMessage: string;
-  data: TApp[];
-};
+import TApp from "@/_common/types/project/TApp";
+import TAppsQueryData from "@/_common/types/project/TAppsQueryData";
+import TAuthQueryData from "@/_common/types/access/TAuthQueryData";
 
 const authenticate = (
   ldapUrl: string,

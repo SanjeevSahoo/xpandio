@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 
 import http from "@/_common/utils/http-common";
-import TAppQueryData from "@/_common/types/TAppQueryData";
+import TAppQueryData from "@/_common/types/project/TAppQueryData";
 import TMenusQueryData from "@/_common/types/TMenusQueryData";
 
 const getUrlWiseApp = (baseUrl: string) => {

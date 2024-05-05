@@ -1,8 +1,8 @@
 import { DEFAULT_APP } from "@/_common/constants";
 import { simpleQuery } from "@/_common/db/oracledb/connection";
 import oracledb from "oracledb";
-import TApp from "@/_common/types/TApp";
-import TAppQueryData from "@/_common/types/TAppQueryData";
+import TApp from "@/_common/types/project/TApp";
+import TAppQueryData from "@/_common/types/project/TAppQueryData";
 import TMenusQueryData from "@/_common/types/TMenusQueryData";
 import TMenu from "@/_common/types/TMenu";
 

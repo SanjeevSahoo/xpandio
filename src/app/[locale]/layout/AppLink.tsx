@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import TApp from "@/_common/types/TApp";
+import TApp from "@/_common/types/project/TApp";
 
 interface IProps {
   app: TApp;

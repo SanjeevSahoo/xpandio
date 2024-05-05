@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import TApp from "../types/TApp";
+import TApp from "../types/project/TApp";
 import { DEFAULT_APP } from "../constants";
 
 interface TAppState {

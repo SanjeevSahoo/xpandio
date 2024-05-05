@@ -24,7 +24,8 @@ function MenuItem(props: IProps) {
   const [childState, setChildState] = useState(false);
   const childClass = childState ? "" : " hidden ";
   const firstMenuClass = menu.id === menuList[0].id ? "" : "";
-  const isSelected = menu.menu_url === pathname && selectedMenu.id === menu.id;
+  const isSelected =
+    pathname.startsWith(menu.menu_url) && selectedMenu.id === menu.id;
 
   const selectedClassTick = isSelected ? " bg-card " : " group-hover:bg-card ";
   const selectedClassText = isSelected

@@ -1,18 +1,8 @@
 import { simpleQuery } from "@/_common/db/mysqldb/connection";
-import TApp from "@/_common/types/TApp";
+import TApp from "@/_common/types/project/TApp";
+import TAppsQueryData from "@/_common/types/project/TAppsQueryData";
+import TAuthQueryData from "@/_common/types/access/TAuthQueryData";
 import TAuthUser from "@/app/[locale]/auth/types/TAuthUser";
-
-type TAuthQueryData = {
-  error: boolean;
-  errorMessage: string;
-  data: TAuthUser;
-};
-
-type TAppsQueryData = {
-  error: boolean;
-  errorMessage: string;
-  data: TApp[];
-};
 
 const authenticateUser = async (
   username: string,

@@ -1,9 +1,10 @@
 import { DEFAULT_APP } from "@/_common/constants";
 import { simpleQuery } from "@/_common/db/mysqldb/connection";
-import TApp from "@/_common/types/TApp";
-import TAppQueryData from "@/_common/types/TAppQueryData";
+import TApp from "@/_common/types/project/TApp";
+import TAppQueryData from "@/_common/types/project/TAppQueryData";
 import TMenu from "@/_common/types/TMenu";
 import TMenusQueryData from "@/_common/types/TMenusQueryData";
+import TAppsQueryData from "@/_common/types/project/TAppsQueryData";
 
 const getUrlWiseApp = async (baseUrl: string): Promise<TAppQueryData> => {
   let retVal: TAppQueryData = {

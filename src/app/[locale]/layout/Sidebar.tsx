@@ -9,7 +9,7 @@ import { DEFAULT_APP } from "@/_common/constants";
 import MenuItem from "./MenuItem";
 import { menuStore } from "./store/menuStore";
 import HoverMenuItem from "./HoverMenuItem";
-import TApp from "@/_common/types/TApp";
+import TApp from "@/_common/types/project/TApp";
 import { usePathname, useRouter } from "next/navigation";
 
 interface IProps {

@@ -1,7 +1,5 @@
-import ProjectService from "@/_common/db/services/project";
-import React from "react";
-import { DataTable } from "./data-table";
-import { columns } from "./columns";
+import React, { Suspense } from "react";
+import RoleSearchResult from "./RoleSearchResult";
 
 export const dynamic = "force-dynamic";
 
@@ -12,17 +10,15 @@ interface IProps {
   };
 }
 
-async function Roles({ searchParams }: IProps) {
+function Roles({ searchParams }: IProps) {
   const appId = searchParams.app ?? "-1";
   const moduleId = searchParams.module ?? "-1";
-  const { data: roleList, error } = await ProjectService.getAllRoles(
-    appId,
-    moduleId
+  const key = JSON.stringify({ appId, moduleId });
+  return (
+    <Suspense key={key} fallback={<div>Loading Role Search Result ....</div>}>
+      <RoleSearchResult appId={appId} moduleId={moduleId} />
+    </Suspense>
   );
-  if (error) {
-    return <div>Error Occured retreiving Role List</div>;
-  }
-  return <DataTable columns={columns} data={roleList} />;
 }
 
 export default Roles;

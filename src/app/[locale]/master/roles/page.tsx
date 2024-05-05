@@ -1,5 +1,7 @@
 import ProjectService from "@/_common/db/services/project";
 import React from "react";
+import { DataTable } from "./data-table";
+import { columns } from "./columns";
 
 export const dynamic = "force-dynamic";
 
@@ -20,7 +22,7 @@ async function Roles({ searchParams }: IProps) {
   if (error) {
     return <div>Error Occured retreiving Role List</div>;
   }
-  return <div>{JSON.stringify(roleList)}</div>;
+  return <DataTable columns={columns} data={roleList} />;
 }
 
 export default Roles;

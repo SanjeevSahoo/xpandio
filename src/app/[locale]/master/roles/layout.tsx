@@ -7,11 +7,11 @@ export default function RolesLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="grid grid-rows-[auto_1fr]">
+    <div className="grid grid-rows-[auto_1fr] ">
       <Suspense fallback={<div>Loading Search Bar...</div>}>
         <RoleSearchWrapper />
       </Suspense>
-      <div>{children}</div>
+      <div className="bg-card overflow-auto">{children}</div>
     </div>
   );
 }

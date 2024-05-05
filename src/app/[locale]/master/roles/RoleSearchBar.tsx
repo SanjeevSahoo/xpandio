@@ -7,8 +7,9 @@ import AppFilter from "../AppFilter";
 import { Label } from "@/_common/components/ui/label";
 import ModuleFilter from "../ModuleFilter";
 import { Button } from "@/_common/components/ui/button";
-import { Plus, SearchIcon } from "lucide-react";
+import { Plus, SearchIcon, X } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 interface IProps {
   appList: TApp[];
@@ -76,16 +77,33 @@ function RoleSearchBar(props: IProps) {
     }
   };
 
-  const handleAdd = () => {
-    router.push("/master/roles/add");
+  const handleAddClose = () => {
+    router.back();
+    router.refresh();
   };
 
   if (pathname === "/master/roles/add") {
-    return <div className="h-0">&nbsp;</div>;
+    return (
+      <div className="h-[55px] p-2 px-4 bg-accent grid grid-cols-[1fr_auto] gap-4 items-center">
+        <div className="font-semibold text-primary text-left ">
+          Add New Role
+        </div>
+        <div className="flex justify-end items-center">
+          <Button
+            variant="destructive"
+            size="icon"
+            title="Close"
+            onClick={handleAddClose}
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="h-[55px] p-2 px-4 bg-card grid grid-cols-[auto_auto_auto_1fr] gap-4 items-center">
+    <div className="h-[55px] p-2 px-4 bg-accent grid grid-cols-[auto_auto_auto_1fr] gap-4 items-center">
       <div className="w-[350px] flex items-center space-x-2">
         <Label>Application:</Label>
         <AppFilter
@@ -113,9 +131,11 @@ function RoleSearchBar(props: IProps) {
         </Button>
       </div>
       <div className="flex justify-end items-center">
-        <Button variant="success" size="icon" onClick={handleAdd}>
-          <Plus className="h-4 w-4" />
-        </Button>
+        <Link href="/master/roles/add">
+          <Button variant="success" size="icon" title="Add New Role">
+            <Plus className="h-4 w-4" />
+          </Button>
+        </Link>
       </div>
     </div>
   );

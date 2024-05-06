@@ -91,6 +91,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 16. Caching
     a. Request Memoization (memorize within a render cycle) - cleared after render cycle ends on server
+    Within a render cycle same api / db query can be called multiple places in component tree, the query is cached an used for subsequent call within that render cycle
     b. Data Cache (memorizes accross user and render cycle) - doesnot clear on redeploy on server
     c. Full Route Cache (caching the full page a build time, any non dynamic page is cached, only updated on rebuild) - cleared on redeploy on server
     d. Router Cache (Client side caching for each route visited, for dynamic 30 seconds and for static 5 minutes.) - cleared on tab close or router refresh.
@@ -117,3 +118,14 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     e. Shadcn UI (UI Library), It uses Radix UI and Tailwind
     f. Tanstack react table (Datatable)
     g. react-i18next (Intenationalization)
+
+20. Recommendations
+    a. To reduce the Client JavaScript bundle size, we recommend moving Client Components down your component tree.
+    For example, you may have a Layout that has static elements (e.g. logo, links, etc) and an interactive search bar that uses state.
+
+    Instead of making the whole layout a Client Component, move the interactive logic to a Client Component (e.g. <SearchBar />) and keep your layout as a Server Component. This means you don't have to send all the component Javascript of the layout to the client.
+
+    b. ENV variable that are not marked as NEXT_PUBLIC will not be accessible in client component. No error occurs but value is undefined.
+    c. Any client related features such as Click events, hooks wont work on server component, Next js will recomend to convert such components to client components
+    d. Next JS does caching very aggresively. It caches by default, so if you want something not to cache that has to be specified explictly.
+    e. Build process can take a lot of time, if any error occurs during build it will fail. Build time increases if we lot of staticaly generated page. Each fetch api in staticaly generated route is run during build process.

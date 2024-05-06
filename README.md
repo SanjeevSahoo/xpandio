@@ -35,4 +35,37 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-learn
+---
+
+## LEARN
+
+1. ISR, SSG, SSR, CSR
+2. Server Component vs Client Component
+3. Client component as child of Server Component
+4. Server Component as child of Client Component as children props
+5. Buildtime, Request Time
+6. File based Routing
+7. App Router and Pages Router (old way, both can be together for migration purpose)
+8. Layout.tsx
+9. page.tsx
+10. loading.tsx
+11. Granular control (Streaming) with multiple Suspense on page.
+12. Linking and Navigating with <Link> component and useRouter Hook on client side. redirect on server side.
+13. Routing
+    a. Route Group (folder), for structuring code, no effect on route.
+    b. Dynamic Routes [slug], [...slug], [[...slug]], these are dynamic routes, catch all route, optional catch all routes.
+    c. The generateStaticParams function can be used in combination with dynamic route segments to statically generate routes at build time instead of on-demand at request time.
+    d. Any folder with page.tsx file is considered a route, other files can coexist but will not be web accessible.
+14. Route Handlers
+    a. Api routes for app router.
+    b. Both routes and router handler should not resolve to same route. so we mostly put route handler inside api folder
+    c. Route handler defined with route.ts file
+    d. Caching also happens for route handlers.
+15. Middleware (for authorization and redirects or checking request before actual page is displayed), this is run a sever end.
+16. Caching
+    a. Request Memoization (memorize within a render cycle) - cleared after render cycle ends on server
+    b. Data Cache (memorizes accross user and render cycle) - doesnot clear on redeploy on server
+    c. Full Route Cache (caching the full page a build time, any non dynamic page is cached, only updated on rebuild) - cleared on redeploy on server
+    d. Router Cache (Client side caching for each route visited, for dynamic 30 seconds and for static 5 minutes.) - cleared on tab close or router refresh.
+    https://blog.webdevsimplified.com/2024-01/next-js-app-router-cache/
+17. Data Fetching

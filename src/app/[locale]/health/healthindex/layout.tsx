@@ -6,7 +6,7 @@ const getCachedLocations = unstable_cache(
   async () => getLocations(),
   ["health-locations"],
   {
-    revalidate: 60 * 60 * 24 * 7,
+    revalidate: 604800, //60 * 60 * 24 * 7
     tags: ["health-locations"],
   }
 );

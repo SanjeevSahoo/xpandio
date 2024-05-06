@@ -8,7 +8,7 @@ async function RoleSearchWrapper() {
     async () => ProjectService.getAllApps(),
     ["all-apps"],
     {
-      revalidate: 60 * 60 * 24 * 7,
+      revalidate: 604800, //60 * 60 * 24 * 7
       tags: ["all-apps"],
     }
   );
@@ -22,7 +22,7 @@ async function RoleSearchWrapper() {
     async () => ProjectService.getAllModules(),
     ["all-modules"],
     {
-      revalidate: 60 * 60 * 24 * 7,
+      revalidate: 604800, //60 * 60 * 24 * 7
       tags: ["all-modules"],
     }
   );

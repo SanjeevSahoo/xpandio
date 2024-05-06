@@ -48,7 +48,7 @@ async function page({ params }: { params: { slug: string[] } }) {
     async () => getHealthIndexReport(+slug[0], +slug[1]),
     ["healthindex-report", slug[0], slug[1]],
     {
-      revalidate: 60 * 60 * 24,
+      revalidate: 86400, //60 * 60 * 24
       tags: [`healthindex-report-${slug[0]}-${slug[1]}`],
     }
   );

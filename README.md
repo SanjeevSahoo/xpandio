@@ -129,3 +129,21 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     c. Any client related features such as Click events, hooks wont work on server component, Next js will recomend to convert such components to client components
     d. Next JS does caching very aggresively. It caches by default, so if you want something not to cache that has to be specified explictly.
     e. Build process can take a lot of time, if any error occurs during build it will fail. Build time increases if we lot of staticaly generated page. Each fetch api in staticaly generated route is run during build process.
+
+21. Cache Size increase
+
+Edit these:
+
+node_modules\next\dist\esm\server\lib\incremental-cache\index.js
+node_modules\next\dist\server\lib\incremental-cache\index.js
+e.g. to this, which increases the size AND gives a server side log if it is exceeded and by how much
+
+        if (fetchCache) {
+            const dataLength = JSON.stringify(data).length;
+            if (dataLength > 10 * 1024 * 1024) {
+                console.warn(`fetch for over 10MB of data can not be cached. Length: ${dataLength}`);
+                return;
+            } else {
+                console.log(`caching an object of length ${dataLength}`)
+            }
+        }
